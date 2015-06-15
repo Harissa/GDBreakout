@@ -43,6 +43,13 @@ public class Log {
         Log.console(newEvent.toString());
     }
 
+    public void logScore(int score)
+    {
+        EventLog newEvent = new EventLog(Event.SCORE, System.nanoTime(), score);
+        events.add(newEvent);
+        Log.console(newEvent.toString());
+    }
+
     public void output()
     {
         if (createDirectory())

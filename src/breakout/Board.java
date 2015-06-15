@@ -34,6 +34,7 @@ public class Board extends JPanel implements Commons {
     Controller controller;
     Board thisBoard;
     int score;
+    int currentTest;
 
     boolean ingame = true;
     boolean restartGame = false;
@@ -48,7 +49,7 @@ public class Board extends JPanel implements Commons {
         numberOfBricks = BRICKS_ACROSS * BRICKS_DOWN;
 
         setDoubleBuffered(true);
-        //timer = new Timer();
+        currentTest=0;
         thisBoard = this;
 
     }
@@ -58,7 +59,9 @@ public class Board extends JPanel implements Commons {
         restartGame();
     }
     private void restartGame() {
+        Log.log.log(Event.GAMESTART);
         restartGame=false;
+        currentTest++;
         bricks = new Brick[numberOfBricks];
         gameInit();
         ingame=true;
@@ -147,14 +150,21 @@ public class Board extends JPanel implements Commons {
         ingame = false;
         timer.cancel();
         Log.log.log(Event.GAMEOVER);
-        Log.log.output();
+        Log.log.logScore(score);
         try {
             Thread.sleep(1000);                 //1000 milliseconds is one second.
-        } catch(InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        restartGame=true;
-
+        if (currentTest <NUMBER_OF_TESTS) {
+            restartGame = true;
+        } else {
+            // finished X tests
+            /*Stats.setScores(Log.log.getScores());
+            Log.log.console(Stats.getAverage());
+            Log.log.console(Stats.getStdDev());
+            Log.log.output();*/
+        }
 
     }
 

@@ -14,7 +14,7 @@ public class Breakout extends JFrame {
 
     public Breakout(Controller controller)
     {
-        Log.log.log(Event.GAMESTART);
+
 
         add(new Board(controller));
         setTitle("Breakout");

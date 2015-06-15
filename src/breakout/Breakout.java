@@ -9,12 +9,12 @@ import javax.swing.JFrame;
 
 public class Breakout extends JFrame {
 
-    public Breakout()
+    public Breakout(Controller controller)
     {
        // Log logger = new Log();
         Log.log.log(Event.GAMESTART);
 
-        add(new Board());
+        add(new Board(controller));
         setTitle("Breakout");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(Commons.WIDTH, Commons.HEIGTH);
@@ -25,6 +25,6 @@ public class Breakout extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Breakout();
+        new Breakout(new KeyController());
     }
 }

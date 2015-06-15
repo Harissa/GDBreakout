@@ -32,7 +32,7 @@ public class Board extends JPanel implements Commons {
     int timerId;
 
 
-    public Board(Log logger) {
+    public Board() {
 
         addKeyListener(new TAdapter());
         setFocusable(true);
@@ -124,6 +124,7 @@ public class Board extends JPanel implements Commons {
     public void stopGame() {
         ingame = false;
         timer.cancel();
+        Log.log.log(Event.GAMEOVER);
     }
 
 

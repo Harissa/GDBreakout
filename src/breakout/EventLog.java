@@ -6,22 +6,7 @@ package breakout;
 
 public class EventLog {
 
-    public enum Event {KEYDOWNLEFT("keydownleft"),KEYUPLEFT("keyupleft"), KEYDOWNRIGHT("keydownright"),
-        KEYUPRIGHT("keyupright"), BRICKBREAK("brickbreak"), PADDLEHIT("paddlehit"), WALLHIT("wallhit"),
-        CEILINGHIT("ceilinghit");
 
-        private String name;
-
-        Event(String name)
-        {
-            this.name = name;
-        }
-
-        public String toString()
-        {
-            return name;
-        }
-    }
 
     long time;
     Event event;
@@ -32,9 +17,11 @@ public class EventLog {
         this.time = time;
     }
 
-    public String output()
+    @Override
+    public String toString()
     {
         return String.valueOf(this.time) + ": " + this.event.toString();
     }
+
 
 }

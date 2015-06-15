@@ -17,10 +17,15 @@ public class Log {
     public static Log log = new Log();
 
     private ArrayList<EventLog> events;
+    private int[] scores;
+    private int nextScore = 0;
+
     private String filename;
     private static final String filepath = "../log/";
-    private static final String fileext = ".txt";
+    private static final String fileext = ".csv";
     public long startTime;
+
+    private String trialName = "";
 
     Log()
     {
@@ -32,6 +37,7 @@ public class Log {
         this.events = new ArrayList<EventLog>();
         this.filename = filename;
         this.startTime = System.nanoTime();
+        //scores = new int[NUMBEROFTESTS];
     }
 
     public void log(Event event)
@@ -43,10 +49,15 @@ public class Log {
 
     public void logScore(int score)
     {
+        scores[nextScore] = score;
+        nextScore++;
+
         EventLog newEvent = new EventLog(Event.SCORE, System.nanoTime(), score);
         events.add(newEvent);
         Log.console(newEvent.toString());
     }
+
+    public int[] getScores() { return scores;}
 
     public void output()
     {
@@ -64,14 +75,13 @@ public class Log {
 
     private boolean printToFile(String filename)
     {
-        BufferedWriter bw = null;
         try {
-            bw = openFile(filename);
-            if (bw==null)
+            OutputStreamWriter writer = openFile(filename);
+            if (writer==null)
                 return false;
 
-            printTimeDifferences(bw);
-            closeFile(bw);
+            printTimeDifferences(writer);
+            closeFile(writer);
         } catch (IOException e) {
             e.printStackTrace();
             return false;
@@ -79,22 +89,21 @@ public class Log {
         return true;
     }
 
-    private void printGeneralLog(BufferedWriter bw) throws IOException {
+    private void printGeneralLog(OutputStreamWriter writer) throws IOException {
         for (int i = 0; i < events.size(); i++) {
-            bw.write(events.get(i).toString());
-            bw.newLine();
+            writer.write(events.get(i).toString()+"\n");
         }
     }
 
-    private void printTimeDifferences(BufferedWriter bw) throws IOException {
+    private void printTimeDifferences(OutputStreamWriter writer) throws IOException {
         long[] differences = brickTimeDifferences();
         for (int i=0;i<differences.length;i++)
         {
-            bw.write(differences[i]+",");
+            writer.write(differences[i]+",");
         }
     }
 
-    private BufferedWriter openFile(String filename) throws IOException {
+    private OutputStreamWriter openFile(String filename) throws IOException {
         if (createDirectory()) {
             File file = new File(filename);
 
@@ -102,15 +111,18 @@ public class Log {
                 file.createNewFile();
             }
 
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            return bw;
+            FileOutputStream fos = new FileOutputStream(file);
+            BufferedOutputStream bos = new BufferedOutputStream(fos);
+            OutputStreamWriter writer  = new OutputStreamWriter(bos, "UTF8");
+
+            return writer;
         }
         return null;
     }
 
-    private void closeFile(BufferedWriter bw) throws IOException {
-        bw.close();
+    private void closeFile(OutputStreamWriter writer) throws IOException {
+        writer.flush();
+        writer.close();
     }
 
     private boolean createDirectory() {

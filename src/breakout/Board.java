@@ -63,7 +63,7 @@ public class Board extends JPanel implements Commons {
         gameInit();
         ingame=true;
         timer = new Timer();
-        timer.scheduleAtFixedRate(new ScheduleTask(), 1000, 10);
+        timer.scheduleAtFixedRate(new ScheduleTask(), 1000, 1);
 
     }
 

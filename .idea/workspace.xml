@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1711c18-0f80-494b-8ffe-4532a50708b4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/output_2015-06-15 15:06:44.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/output_2015-06-15 15:07:46.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/output_SystemClock[Z].txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/breakout/log/Log.java" afterPath="$PROJECT_DIR$/src/breakout/log/Log.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/breakout/Board.java" afterPath="$PROJECT_DIR$/src/breakout/Board.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/breakout/Brick.java" afterPath="$PROJECT_DIR$/src/breakout/Brick.java" />
     </list>
     <ignored path="GDBreakout.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,9 +40,10 @@
         <entry file="file://$PROJECT_DIR$/src/breakout/Brick.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="38" />
+              <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#621#622#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/breakout/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="136" column="24" selection-start-line="136" selection-start-column="24" selection-end-line="136" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.2937063">
+              <caret line="195" column="37" selection-start-line="195" selection-start-column="37" selection-end-line="195" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -81,10 +79,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Log.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Log.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/breakout/log/Log.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.808858">
+            <state vertical-scroll-proportion="0.0">
               <caret line="85" column="40" selection-start-line="85" selection-start-column="40" selection-end-line="85" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -150,11 +148,11 @@
         <option value="$PROJECT_DIR$/src/breakout/EventLog.java" />
         <option value="$PROJECT_DIR$/src/breakout/Event.java" />
         <option value="$PROJECT_DIR$/src/breakout/Breakout.java" />
-        <option value="$PROJECT_DIR$/src/breakout/Board.java" />
         <option value="$PROJECT_DIR$/src/breakout/log/Event.java" />
         <option value="$PROJECT_DIR$/src/breakout/log/EventLog.java" />
-        <option value="$PROJECT_DIR$/src/breakout/Brick.java" />
         <option value="$PROJECT_DIR$/src/breakout/log/Log.java" />
+        <option value="$PROJECT_DIR$/src/breakout/Brick.java" />
+        <option value="$PROJECT_DIR$/src/breakout/Board.java" />
       </list>
     </option>
   </component>
@@ -480,7 +478,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1374" height="745" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -490,7 +488,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2962963" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2962963" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -543,6 +541,7 @@
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#621#622#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -623,6 +622,7 @@
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#621#622#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -679,47 +679,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/breakout/Ball.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/breakout/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="136" column="24" selection-start-line="136" selection-start-column="24" selection-end-line="136" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/breakout/log/Event.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/breakout/Breakout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/breakout/Brick.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -749,13 +713,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/breakout/log/Log.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.808858">
+        <state vertical-scroll-proportion="0.0">
           <caret line="85" column="40" selection-start-line="85" selection-start-column="40" selection-end-line="85" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#645#646#0" expanded="true" />
             <element signature="e#675#676#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/breakout/Brick.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#621#622#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/breakout/Breakout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/breakout/Ball.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/breakout/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2937063">
+          <caret line="195" column="37" selection-start-line="195" selection-start-column="37" selection-end-line="195" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>

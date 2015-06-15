@@ -31,7 +31,6 @@ public class Brick extends Sprite {
 
     public boolean isDestroyed()
     {
-        Log.log.log(Event.BRICKBREAK);
         return destroyed;
     }
 

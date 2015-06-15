@@ -5,6 +5,9 @@
  */
 package breakout;
 
+import breakout.log.Event;
+import breakout.log.Log;
+
 import javax.swing.JFrame;
 
 public class Breakout extends JFrame {

@@ -1,4 +1,4 @@
-package breakout;
+package breakout.log;
 
 /**
  * Created by davidgundry on 15/06/15.

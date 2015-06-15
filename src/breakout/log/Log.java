@@ -1,8 +1,7 @@
-package breakout;
+package breakout.log;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.time.Clock;
 import java.util.ArrayList;
 
 /**

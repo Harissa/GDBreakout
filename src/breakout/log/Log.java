@@ -1,5 +1,7 @@
 package breakout.log;
 
+import breakout.Commons;
+
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,7 +15,7 @@ import java.util.Date;
  *
  * Created by davidgundry on 15/06/15.
  */
-public class Log {
+public class Log implements Commons {
     public static Log log = new Log();
 
     private ArrayList<EventLog> events;
@@ -37,7 +39,7 @@ public class Log {
         this.events = new ArrayList<EventLog>();
         this.filename = filename;
         this.startTime = System.nanoTime();
-        //scores = new int[NUMBEROFTESTS];
+        scores = new int[NUMBER_OF_TESTS];
     }
 
     public void setTrialName(String trialName)

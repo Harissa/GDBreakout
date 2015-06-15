@@ -11,7 +11,9 @@ public class Breakout extends JFrame {
 
     public Breakout()
     {
-        add(new Board());
+        Log logger = new Log();
+
+        add(new Board(logger));
         setTitle("Breakout");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(Commons.WIDTH, Commons.HEIGTH);

@@ -32,7 +32,7 @@ public class Board extends JPanel implements Commons {
     int timerId;
 
 
-    public Board() {
+    public Board(Log logger) {
 
         addKeyListener(new TAdapter());
         setFocusable(true);

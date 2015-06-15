@@ -12,7 +12,7 @@ public class Paddle extends Sprite implements Commons {
 
     String paddle = "../images/paddle.png";
 
-    int dx;
+    //int dx;
 
     public Paddle() {
 
@@ -25,7 +25,8 @@ public class Paddle extends Sprite implements Commons {
         resetState();
     }
 
-    public void move() {
+    public void move(int dx) {
+
         x += dx;
         if (x <= 2)
             x = 2;
@@ -33,31 +34,6 @@ public class Paddle extends Sprite implements Commons {
             x = Commons.PADDLE_RIGHT;
     }
 
-    public void keyPressed(KeyEvent e) {
-
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT) {
-            dx = -PADDLE_SPEED;
-
-        }
-
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = PADDLE_SPEED;
-        }
-    }
-
-    public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT) {
-            dx = 0;
-        }
-
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 0;
-        }
-    }
 
     public void resetState() {
         x = 200;

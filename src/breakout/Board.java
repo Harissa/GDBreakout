@@ -31,19 +31,23 @@ public class Board extends JPanel implements Commons {
     Paddle paddle;
     Brick bricks[];
     int numberOfBricks;
+    Controller controller;
+    Board thisBoard;
 
     boolean ingame = true;
     int timerId;
 
 
-    public Board() {
+    public Board(Controller newController) {
 
+        controller = newController;
         addKeyListener(new TAdapter());
         setFocusable(true);
         numberOfBricks = BRICKS_ACROSS * BRICKS_DOWN;
         bricks = new Brick[numberOfBricks];
         setDoubleBuffered(true);
         timer = new Timer();
+        thisBoard = this;
 
     }
 
@@ -104,11 +108,11 @@ public class Board extends JPanel implements Commons {
     private class TAdapter extends KeyAdapter {
 
         public void keyReleased(KeyEvent e) {
-            paddle.keyReleased(e);
+            controller.keyReleased(e);
         }
 
         public void keyPressed(KeyEvent e) {
-            paddle.keyPressed(e);
+            controller.keyPressed(e);
         }
     }
 
@@ -118,7 +122,8 @@ public class Board extends JPanel implements Commons {
         public void run() {
 
             ball.move();
-            paddle.move();
+            int dx = controller.getAction(thisBoard);
+            paddle.move(dx);
             checkCollision();
             repaint();
 

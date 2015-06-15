@@ -3,7 +3,6 @@ package breakout.log;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Clock;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,6 +19,7 @@ public class Log {
     private ArrayList<EventLog> events;
     private String filename;
     private static final String filepath = "../log/";
+    private static final String fileext = ".txt";
     public long startTime;
 
     Log()
@@ -27,12 +27,10 @@ public class Log {
         this("output");
     }
 
-    Log(String outputFile)
+    Log(String filename)
     {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
         this.events = new ArrayList<EventLog>();
-        this.filename = filepath+outputFile+"_"+ dateFormat.format(date)+".txt";
+        this.filename = filename;
         this.startTime = System.nanoTime();
     }
 
@@ -52,7 +50,10 @@ public class Log {
 
     public void output()
     {
-        if (printToFile(filename))
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+
+        if (printToFile(filepath+filename+"_"+ dateFormat.format(date)+fileext))
             Log.console("Saved file");
     }
 
@@ -65,7 +66,7 @@ public class Log {
     {
         BufferedWriter bw = null;
         try {
-            bw = openFile();
+            bw = openFile(filename);
             if (bw==null)
                 return false;
 
@@ -93,7 +94,7 @@ public class Log {
         }
     }
 
-    private BufferedWriter openFile() throws IOException {
+    private BufferedWriter openFile(String filename) throws IOException {
         if (createDirectory()) {
             File file = new File(filename);
 

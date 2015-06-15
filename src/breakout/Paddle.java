@@ -38,12 +38,12 @@ public class Paddle extends Sprite implements Commons {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_LEFT) {
-            dx = -2;
+            dx = -PADDLE_SPEED;
 
         }
 
         if (key == KeyEvent.VK_RIGHT) {
-            dx = 2;
+            dx = PADDLE_SPEED;
         }
     }
 

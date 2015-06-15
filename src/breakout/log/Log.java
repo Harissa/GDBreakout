@@ -72,9 +72,9 @@ public class Log implements Commons {
         Date date = new Date();
 
 
-        if (LogOutput.printTimeDifferences(filepath,filename,brickTimeDifferences()))
+        if (LogOutput.printTimeDifferences(filepath,filename+"_blockTimeDiff",brickTimeDifferences()))
             Log.console("Saved time differences");
-        if (LogOutput.printEventLog(filepath, filename, events))
+        if (LogOutput.printEventLog(filepath, filename+"_eventsLog", events))
             Log.console("Saved event log");
     }
 

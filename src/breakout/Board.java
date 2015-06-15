@@ -150,7 +150,7 @@ public class Board extends JPanel implements Commons {
         ingame = false;
         timer.cancel();
         Log.log.log(Event.GAMEOVER);
-        Log.log.logScore(score);
+        //Log.log.logScore(score);
         try {
             Thread.sleep(1000);                 //1000 milliseconds is one second.
         } catch (InterruptedException ex) {
@@ -160,10 +160,12 @@ public class Board extends JPanel implements Commons {
             restartGame = true;
         } else {
             // finished X tests
-            /*Stats.setScores(Log.log.getScores());
+
+
+            Stats.setScores(Log.log.getScores());
             Log.log.console(Stats.getAverage());
             Log.log.console(Stats.getStdDev());
-            Log.log.output();*/
+            Log.log.output();
         }
 
     }

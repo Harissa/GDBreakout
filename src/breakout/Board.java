@@ -36,6 +36,7 @@ public class Board extends JPanel implements Commons {
     int score;
 
     boolean ingame = true;
+    boolean restartGame = false;
     int timerId;
 
 
@@ -47,7 +48,7 @@ public class Board extends JPanel implements Commons {
         numberOfBricks = BRICKS_ACROSS * BRICKS_DOWN;
 
         setDoubleBuffered(true);
-        timer = new Timer();
+        //timer = new Timer();
         thisBoard = this;
 
     }
@@ -57,8 +58,11 @@ public class Board extends JPanel implements Commons {
         restartGame();
     }
     private void restartGame() {
+        restartGame=false;
         bricks = new Brick[numberOfBricks];
         gameInit();
+        ingame=true;
+        timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(), 1000, 10);
 
     }
@@ -132,6 +136,9 @@ public class Board extends JPanel implements Commons {
             paddle.move(dx);
             checkCollision();
             repaint();
+            if (restartGame) {
+                restartGame();
+            }
 
         }
     }
@@ -146,7 +153,7 @@ public class Board extends JPanel implements Commons {
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        restartGame();
+        restartGame=true;
 
 
     }

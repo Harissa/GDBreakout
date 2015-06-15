@@ -66,7 +66,7 @@ public class Board extends JPanel implements Commons {
         gameInit();
         ingame=true;
         timer = new Timer();
-        timer.scheduleAtFixedRate(new ScheduleTask(), 1000, 10);//10
+        timer.scheduleAtFixedRate(new ScheduleTask(), 1000, 1);
 
     }
 
@@ -160,10 +160,10 @@ public class Board extends JPanel implements Commons {
             restartGame = true;
         } else {
             // finished X tests
-            Stats.setScores(Log.log.getScores());
+            /*Stats.setScores(Log.log.getScores());
             Log.log.console(Stats.getAverage());
             Log.log.console(Stats.getStdDev());
-            Log.log.output();
+            Log.log.output();*/
         }
 
     }

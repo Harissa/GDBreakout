@@ -3,6 +3,9 @@
  */
 package breakout;
 
+import breakout.log.Event;
+import breakout.log.Log;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;

@@ -5,13 +5,15 @@
  */
 package breakout;
 
+import breakout.log.Event;
+import breakout.log.Log;
+
 import javax.swing.JFrame;
 
 public class Breakout extends JFrame {
 
     public Breakout(Controller controller)
     {
-       // Log logger = new Log();
         Log.log.log(Event.GAMESTART);
 
         add(new Board(controller));

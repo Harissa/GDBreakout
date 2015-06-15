@@ -24,7 +24,6 @@ public class Log implements Commons {
 
     private String filename;
     private static final String filepath = "../log/";
-    private static final String fileext = ".csv";
     public long startTime;
 
     private String trialName = "";

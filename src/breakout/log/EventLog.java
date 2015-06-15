@@ -7,21 +7,21 @@ package breakout.log;
  */
 public class EventLog {
 
-    private long time;
+    private long absoluteTime;
     private long relativeTime;
     private Event event;
 
     EventLog(Event event, long time)
     {
         this.event = event;
-        this.time = time;
+        this.absoluteTime = time;
         this.relativeTime = time-Log.log.startTime;
     }
 
     @Override
     public String toString()
     {
-        return String.valueOf(this.time) + ": " + this.event.toString();
+        return String.valueOf(this.relativeTime) + ": " + this.event.toString();
     }
 
 }

@@ -154,28 +154,28 @@ public class Board extends JPanel implements Commons {
             int fourth = paddleLPos + 32;
 
             if (ballLPos < first) {
-                ball.setXDir(-1);
-                ball.setYDir(-1);
+                ball.setXDir(-BALL_SPEED);
+                ball.setYDir(-BALL_SPEED);
             }
 
             if (ballLPos >= first && ballLPos < second) {
-                ball.setXDir(-1);
-                ball.setYDir(-1 * ball.getYDir());
+                ball.setXDir(-BALL_SPEED);
+                ball.setYDir(-BALL_SPEED * ball.getYDir());
             }
 
             if (ballLPos >= second && ballLPos < third) {
                 ball.setXDir(0);
-                ball.setYDir(-1);
+                ball.setYDir(-BALL_SPEED);
             }
 
             if (ballLPos >= third && ballLPos < fourth) {
-                ball.setXDir(1);
-                ball.setYDir(-1 * ball.getYDir());
+                ball.setXDir(BALL_SPEED);
+                ball.setYDir(-BALL_SPEED * ball.getYDir());
             }
 
             if (ballLPos > fourth) {
-                ball.setXDir(1);
-                ball.setYDir(-1);
+                ball.setXDir(BALL_SPEED);
+                ball.setYDir(-BALL_SPEED);
             }
         }
 
@@ -197,19 +197,19 @@ public class Board extends JPanel implements Commons {
 
                 if (!bricks[i].isDestroyed()) {
                     if (bricks[i].getRect().contains(pointRight)) {
-                        ball.setXDir(-1);
+                        ball.setXDir(-BALL_SPEED);
                     }
 
                     else if (bricks[i].getRect().contains(pointLeft)) {
-                        ball.setXDir(1);
+                        ball.setXDir(BALL_SPEED);
                     }
 
                     if (bricks[i].getRect().contains(pointTop)) {
-                        ball.setYDir(1);
+                        ball.setYDir(BALL_SPEED);
                     }
 
                     else if (bricks[i].getRect().contains(pointBottom)) {
-                        ball.setYDir(-1);
+                        ball.setYDir(-BALL_SPEED);
                     }
 
                     bricks[i].setDestroyed(true);

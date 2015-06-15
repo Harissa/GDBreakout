@@ -11,6 +11,9 @@ public class Breakout extends JFrame {
 
     public Breakout()
     {
+       // Log logger = new Log();
+        Log.log.log(Event.GAMESTART);
+
         add(new Board());
         setTitle("Breakout");
         setDefaultCloseOperation(EXIT_ON_CLOSE);

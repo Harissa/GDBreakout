@@ -33,8 +33,10 @@ public class Board extends JPanel implements Commons {
     int numberOfBricks;
     Controller controller;
     Board thisBoard;
+    int score;
 
     boolean ingame = true;
+    boolean restartGame = false;
     int timerId;
 
 
@@ -44,24 +46,32 @@ public class Board extends JPanel implements Commons {
         addKeyListener(new TAdapter());
         setFocusable(true);
         numberOfBricks = BRICKS_ACROSS * BRICKS_DOWN;
-        bricks = new Brick[numberOfBricks];
+
         setDoubleBuffered(true);
-        timer = new Timer();
+        //timer = new Timer();
         thisBoard = this;
 
     }
 
     public void addNotify() {
         super.addNotify();
+        restartGame();
+    }
+    private void restartGame() {
+        restartGame=false;
+        bricks = new Brick[numberOfBricks];
         gameInit();
+        ingame=true;
+        timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(), 1000, 10);
+
     }
 
     public void gameInit() {
 
         ball = new Ball();
         paddle = new Paddle();
-
+        score =0;
 
         int k = 0;
         for (int i = 0; i < BRICKS_DOWN; i++) {
@@ -126,6 +136,9 @@ public class Board extends JPanel implements Commons {
             paddle.move(dx);
             checkCollision();
             repaint();
+            if (restartGame) {
+                restartGame();
+            }
 
         }
     }
@@ -135,6 +148,14 @@ public class Board extends JPanel implements Commons {
         timer.cancel();
         Log.log.log(Event.GAMEOVER);
         Log.log.output();
+        try {
+            Thread.sleep(1000);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        restartGame=true;
+
+
     }
 
 
@@ -221,7 +242,7 @@ public class Board extends JPanel implements Commons {
                     else if (bricks[i].getRect().contains(pointBottom)) {
                         ball.setYDir(-BALL_SPEED);
                     }
-
+                    score++;
                     bricks[i].setDestroyed(true);
                 }
             }

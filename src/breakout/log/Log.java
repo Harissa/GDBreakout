@@ -23,7 +23,7 @@ public class Log implements Commons {
     private int nextScore = 0;
 
     private String filename;
-    private static final String filepath = "../log/";
+    private static final String filepath = "../logoutput/";
     public long startTime;
 
     private String trialName = "";

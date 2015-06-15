@@ -1,7 +1,11 @@
 package breakout.log;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Clock;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * The Log class handles all analytics logging. It contains a static object log,
@@ -20,19 +24,28 @@ public class Log {
 
     Log()
     {
-        this("output.txt");
+        this("output");
     }
 
     Log(String outputFile)
     {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
         this.events = new ArrayList<EventLog>();
-        this.filename = filepath+outputFile;
+        this.filename = filepath+outputFile+"_"+ dateFormat.format(date)+".txt";
         this.startTime = System.nanoTime();
     }
 
     public void log(Event event)
     {
         EventLog newEvent = new EventLog(event, System.nanoTime());
+        events.add(newEvent);
+        Log.console(newEvent.toString());
+    }
+
+    public void logScore(int score)
+    {
+        EventLog newEvent = new EventLog(Event.SCORE, System.nanoTime(), score);
         events.add(newEvent);
         Log.console(newEvent.toString());
     }

@@ -169,7 +169,7 @@ public class Board extends JPanel implements Commons {
         }
 
         if ((ball.getRect()).intersects(paddle.getRect())) {
-
+            Log.log.log(Event.PADDLEHIT);
             int paddleLPos = (int)paddle.getRect().getMinX();
             int ballLPos = (int)ball.getRect().getMinX();
 
@@ -207,7 +207,6 @@ public class Board extends JPanel implements Commons {
 
         for (int i = 0; i < numberOfBricks; i++) {
             if ((ball.getRect()).intersects(bricks[i].getRect())) {
-
                 int ballLeft = (int)ball.getRect().getMinX();
                 int ballHeight = (int)ball.getRect().getHeight();
                 int ballWidth = (int)ball.getRect().getWidth();

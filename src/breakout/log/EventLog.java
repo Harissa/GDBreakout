@@ -9,6 +9,7 @@ public class EventLog {
 
     private long absoluteTime;
     private long relativeTime;
+    private int score;
     private Event event;
 
     EventLog(Event event, long time)
@@ -18,10 +19,19 @@ public class EventLog {
         this.relativeTime = time-Log.log.startTime;
     }
 
+    EventLog(Event event, long time, int score)
+    {
+        this(event,time);
+        this.score = score;
+    }
+
     @Override
     public String toString()
     {
-        return String.valueOf(this.relativeTime) + ": " + this.event.toString();
+        if (this.event == Event.SCORE)
+            return String.valueOf(this.relativeTime) + ": " + this.event.toString()+": "+this.score;
+        else
+            return String.valueOf(this.relativeTime) + ": " + this.event.toString();
     }
 
 }

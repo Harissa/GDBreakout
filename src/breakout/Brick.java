@@ -3,6 +3,9 @@
  */
 package breakout;
 
+import breakout.log.Event;
+import breakout.log.Log;
+
 import javax.swing.ImageIcon;
 
 
@@ -33,6 +36,8 @@ public class Brick extends Sprite {
 
     public void setDestroyed(boolean destroyed)
     {
+        if ((!this.destroyed) && (destroyed))
+            Log.log.log(Event.BRICKBREAK);
         this.destroyed = destroyed;
     }
 

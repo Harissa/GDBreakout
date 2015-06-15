@@ -129,6 +129,7 @@ public class Board extends JPanel implements Commons {
         ingame = false;
         timer.cancel();
         Log.log.log(Event.GAMEOVER);
+        Log.log.output();
     }
 
 

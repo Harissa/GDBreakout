@@ -1,6 +1,8 @@
 package breakout.log;
 
 /**
+ * An Event defines a particular type of event or action that happens in the game.
+ *
  * Created by davidgundry on 15/06/15.
  */
 public enum Event {

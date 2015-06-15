@@ -75,6 +75,8 @@ public class Log implements Commons {
             Log.console("Saved time differences");
         if (LogOutput.printEventLog(filepath, filename+"_eventsLog", events))
             Log.console("Saved event log");
+        if (LogOutput.printScores(filepath, filename+"_scores", scores))
+            Log.console("Saved scores log");
     }
 
     public static void console(Object o)

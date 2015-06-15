@@ -45,6 +45,24 @@ public class LogOutput {
         return true;
     }
 
+    static boolean printScores(String filepath, String filename, int[] scores)  {
+        try {
+            OutputStreamWriter writer = openFile(filepath, filename, ".csv");
+            if (writer==null)
+                return false;
+
+            for (int i=0;i<scores.length;i++)
+            {
+                writer.write(scores[i]+",");
+            }
+            closeFile(writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     private static OutputStreamWriter openFile(String filepath, String filename, String extension) throws IOException {
         if (createDirectory(filepath)) {
             File file = new File(filename+extension);

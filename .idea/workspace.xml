@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1711c18-0f80-494b-8ffe-4532a50708b4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/breakout/Board.java" afterPath="$PROJECT_DIR$/src/breakout/Board.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/breakout/log/Log.java" afterPath="$PROJECT_DIR$/src/breakout/log/Log.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/output" afterPath="$PROJECT_DIR$/src/output" />
     </list>
     <ignored path="GDBreakout.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,16 +85,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Log.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Log.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/breakout/log/Log.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19114219">
-              <caret line="93" column="54" selection-start-line="93" selection-start-column="54" selection-end-line="93" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#765#766#0" expanded="true" />
                 <element signature="e#795#796#0" expanded="true" />
-                <element signature="e#3863#3869#0" expanded="true" />
+                <element signature="e#1057#1058#0" expanded="true" />
+                <element signature="e#1099#1100#0" expanded="true" />
+                <element signature="e#2215#2221#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LogOutput.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/breakout/log/LogOutput.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.54545456">
+              <caret line="31" column="67" selection-start-line="31" selection-start-column="67" selection-end-line="31" selection-end-column="67" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -142,8 +156,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -166,6 +180,7 @@
         <option value="$PROJECT_DIR$/src/breakout/log/EventLog.java" />
         <option value="$PROJECT_DIR$/src/breakout/Breakout.java" />
         <option value="$PROJECT_DIR$/src/breakout/Board.java" />
+        <option value="$PROJECT_DIR$/src/breakout/log/LogOutput.java" />
         <option value="$PROJECT_DIR$/src/breakout/log/Log.java" />
       </list>
     </option>
@@ -598,7 +613,9 @@
             <element signature="imports" expanded="true" />
             <element signature="e#765#766#0" expanded="true" />
             <element signature="e#795#796#0" expanded="true" />
-            <element signature="e#3863#3869#0" expanded="true" />
+            <element signature="e#1057#1058#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#2215#2221#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -685,7 +702,9 @@
             <element signature="imports" expanded="true" />
             <element signature="e#765#766#0" expanded="true" />
             <element signature="e#795#796#0" expanded="true" />
-            <element signature="e#3863#3869#0" expanded="true" />
+            <element signature="e#1057#1058#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#2215#2221#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -805,13 +824,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/breakout/log/Log.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19114219">
-          <caret line="93" column="54" selection-start-line="93" selection-start-column="54" selection-end-line="93" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#765#766#0" expanded="true" />
             <element signature="e#795#796#0" expanded="true" />
-            <element signature="e#3863#3869#0" expanded="true" />
+            <element signature="e#1057#1058#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#2215#2221#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/breakout/log/LogOutput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54545456">
+          <caret line="31" column="67" selection-start-line="31" selection-start-column="67" selection-end-line="31" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

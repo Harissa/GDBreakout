@@ -40,6 +40,11 @@ public class Log {
         //scores = new int[NUMBEROFTESTS];
     }
 
+    public void setTrialName(String trialName)
+    {
+        this.trialName = trialName;
+    }
+
     public void log(Event event)
     {
         EventLog newEvent = new EventLog(event, System.nanoTime());
@@ -64,80 +69,16 @@ public class Log {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
 
-        if (printToFile(filepath+filename+"_"+ dateFormat.format(date)+fileext))
-            Log.console("Saved file");
+
+        if (LogOutput.printTimeDifferences(filepath,filename,brickTimeDifferences()))
+            Log.console("Saved time differences");
+        if (LogOutput.printEventLog(filepath, filename, events))
+            Log.console("Saved event log");
     }
 
     public static void console(Object o)
     {
         System.out.println(o);
-    }
-
-    private boolean printToFile(String filename)
-    {
-        try {
-            OutputStreamWriter writer = openFile(filename);
-            if (writer==null)
-                return false;
-
-            printTimeDifferences(writer);
-            closeFile(writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
-    private void printGeneralLog(OutputStreamWriter writer) throws IOException {
-        for (int i = 0; i < events.size(); i++) {
-            writer.write(events.get(i).toString()+"\n");
-        }
-    }
-
-    private void printTimeDifferences(OutputStreamWriter writer) throws IOException {
-        long[] differences = brickTimeDifferences();
-        for (int i=0;i<differences.length;i++)
-        {
-            writer.write(differences[i]+",");
-        }
-    }
-
-    private OutputStreamWriter openFile(String filename) throws IOException {
-        if (createDirectory()) {
-            File file = new File(filename);
-
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-
-            FileOutputStream fos = new FileOutputStream(file);
-            BufferedOutputStream bos = new BufferedOutputStream(fos);
-            OutputStreamWriter writer  = new OutputStreamWriter(bos, "UTF8");
-
-            return writer;
-        }
-        return null;
-    }
-
-    private void closeFile(OutputStreamWriter writer) throws IOException {
-        writer.flush();
-        writer.close();
-    }
-
-    private boolean createDirectory() {
-        File theDir = new File(filepath);
-        boolean result = true;
-
-        if (!theDir.exists()) {
-            try {
-                theDir.mkdir();
-            } catch (SecurityException e) {
-                e.printStackTrace();
-                result = false;
-            }
-        }
-        return result;
     }
 
     private long[] brickTimeDifferences()

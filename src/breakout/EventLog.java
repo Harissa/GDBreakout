@@ -6,8 +6,6 @@ package breakout;
 
 public class EventLog {
 
-
-
     long time;
     Event event;
 

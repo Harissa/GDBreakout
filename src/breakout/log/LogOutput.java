@@ -17,7 +17,8 @@ public class LogOutput {
                 return false;
 
             for (int i = 0; i < events.size(); i++) {
-                writer.write(events.get(i).toString()+"\n");
+                String str = events.get(i).toString()+"\n";
+                writer.write(str,0,str.length());
             }
                 closeFile(writer);
             } catch (IOException e) {
@@ -35,7 +36,27 @@ public class LogOutput {
 
             for (int i=0;i<differences.length;i++)
             {
-                writer.write(differences[i]+",");
+                String str = differences[i]+",";
+                writer.write(str,0,str.length());
+            }
+            closeFile(writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    static boolean printScores(String filepath, String filename, int[] scores)  {
+        try {
+            OutputStreamWriter writer = openFile(filepath, filename, ".csv");
+            if (writer==null)
+                return false;
+
+            for (int i=0;i<scores.length;i++)
+            {
+                String str = scores[i]+",";
+                writer.write(str,0,str.length());
             }
             closeFile(writer);
         } catch (IOException e) {

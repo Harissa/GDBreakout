@@ -14,7 +14,6 @@ public class Breakout extends JFrame {
 
     public Breakout()
     {
-       // Log logger = new Log();
         Log.log.log(Event.GAMESTART);
 
         add(new Board());

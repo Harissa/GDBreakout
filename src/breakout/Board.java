@@ -27,6 +27,7 @@ public class Board extends JPanel implements Commons {
     Ball ball;
     Paddle paddle;
     Brick bricks[];
+    int numberOfBricks;
 
     boolean ingame = true;
     int timerId;
@@ -36,8 +37,8 @@ public class Board extends JPanel implements Commons {
 
         addKeyListener(new TAdapter());
         setFocusable(true);
-
-        bricks = new Brick[30];
+        numberOfBricks = BRICKS_ACROSS * BRICKS_DOWN;
+        bricks = new Brick[numberOfBricks];
         setDoubleBuffered(true);
         timer = new Timer();
 
@@ -56,8 +57,8 @@ public class Board extends JPanel implements Commons {
 
 
         int k = 0;
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 6; j++) {
+        for (int i = 0; i < BRICKS_DOWN; i++) {
+            for (int j = 0; j < BRICKS_ACROSS; j++) {
                 bricks[k] = new Brick(j * 40 + 30, i * 10 + 50);
                 k++;
             }
@@ -74,7 +75,7 @@ public class Board extends JPanel implements Commons {
             g.drawImage(paddle.getImage(), paddle.getX(), paddle.getY(),
                     paddle.getWidth(), paddle.getHeight(), this);
 
-            for (int i = 0; i < 30; i++) {
+            for (int i = 0; i <numberOfBricks ; i++) {
                 if (!bricks[i].isDestroyed())
                     g.drawImage(bricks[i].getImage(), bricks[i].getX(),
                             bricks[i].getY(), bricks[i].getWidth(),
@@ -133,11 +134,11 @@ public class Board extends JPanel implements Commons {
             stopGame();
         }
 
-        for (int i = 0, j = 0; i < 30; i++) {
+        for (int i = 0, j = 0; i < numberOfBricks; i++) {
             if (bricks[i].isDestroyed()) {
                 j++;
             }
-            if (j == 30) {
+            if (j == numberOfBricks) {
                 message = "Victory";
                 stopGame();
             }
@@ -180,7 +181,7 @@ public class Board extends JPanel implements Commons {
         }
 
 
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < numberOfBricks; i++) {
             if ((ball.getRect()).intersects(bricks[i].getRect())) {
 
                 int ballLeft = (int)ball.getRect().getMinX();

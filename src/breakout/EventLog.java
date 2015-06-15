@@ -5,10 +5,28 @@ package breakout;
  */
 
 public class EventLog {
-    long time;
-    Log.Event event;
 
-    EventLog(Log.Event event, long time)
+    public enum Event {KEYDOWNLEFT("keydownleft"),KEYUPLEFT("keyupleft"), KEYDOWNRIGHT("keydownright"),
+        KEYUPRIGHT("keyupright"), BRICKBREAK("brickbreak"), PADDLEHIT("paddlehit"), WALLHIT("wallhit"),
+        CEILINGHIT("ceilinghit");
+
+        private String name;
+
+        Event(String name)
+        {
+            this.name = name;
+        }
+
+        public String toString()
+        {
+            return name;
+        }
+    }
+
+    long time;
+    Event event;
+
+    EventLog(Event event, long time)
     {
         this.event = event;
         this.time = time;

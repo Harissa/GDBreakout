@@ -10,23 +10,6 @@ import java.util.ArrayList;
  */
 public class Log {
 
-    public enum Event {KEYDOWNLEFT("keydownleft"),KEYUPLEFT("keyupleft"), KEYDOWNRIGHT("keydownright"),
-        KEYUPRIGHT("keyupright"), BRICKBREAK("brickbreak"), PADDLEHIT("paddlehit"), WALLHIT("wallhit"),
-        CEILINGHIT("ceilinghit");
-
-        private String name;
-
-        Event(String name)
-        {
-            this.name = name;
-        }
-
-        public String toString()
-        {
-            return name;
-        }
-    }
-
     private ArrayList<EventLog> events;
 
     Log()
@@ -34,7 +17,7 @@ public class Log {
         events = new ArrayList<EventLog>();
     }
 
-    public void log(Event event)
+    public void log(EventLog.Event event)
     {
         events.add(new EventLog(event, System.nanoTime()));
     }

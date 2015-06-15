@@ -52,14 +52,64 @@ public class Log {
 
     public void output()
     {
-        if (createDirectory())
-            if (printToFile(filename))
-                Log.console("Saved file");
+        if (printToFile(filename))
+            Log.console("Saved file");
     }
 
     public static void console(Object o)
     {
         System.out.println(o);
+    }
+
+    private boolean printToFile(String filename)
+    {
+        BufferedWriter bw = null;
+        try {
+            bw = openFile();
+            if (bw==null)
+                return false;
+
+            printTimeDifferences(bw);
+            closeFile(bw);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    private void printGeneralLog(BufferedWriter bw) throws IOException {
+        for (int i = 0; i < events.size(); i++) {
+            bw.write(events.get(i).toString());
+            bw.newLine();
+        }
+    }
+
+    private void printTimeDifferences(BufferedWriter bw) throws IOException {
+        long[] differences = brickTimeDifferences();
+        for (int i=0;i<differences.length;i++)
+        {
+            bw.write(differences[i]+",");
+        }
+    }
+
+    private BufferedWriter openFile() throws IOException {
+        if (createDirectory()) {
+            File file = new File(filename);
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            return bw;
+        }
+        return null;
+    }
+
+    private void closeFile(BufferedWriter bw) throws IOException {
+        bw.close();
     }
 
     private boolean createDirectory() {
@@ -77,32 +127,31 @@ public class Log {
         return result;
     }
 
-    private boolean printToFile(String filename)
+    private long[] brickTimeDifferences()
     {
-        boolean success = true;
-        try {
-            File file = new File(filename);
+        long lastBreakEventTime = 0;
+        ArrayList<Long> timeDifferences = new ArrayList<Long>();
 
-            if (!file.exists()) {
-                file.createNewFile();
+        for (int i = 0; i < events.size(); i++)
+        {
+            if (events.get(i).getEvent() == Event.BRICKBREAK)
+            {
+                if (lastBreakEventTime != 0)
+                    timeDifferences.add(events.get(i).getRelativeTime()-lastBreakEventTime);
+                lastBreakEventTime = events.get(i).getRelativeTime();
             }
-
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-
-            for (int i = 0; i < events.size(); i++) {
-                bw.write(events.get(i).toString());
-                bw.newLine();
-            }
-            bw.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            success = false;
-        } catch (IOException e) {
-            e.printStackTrace();
-            success = false;
         }
-        return success;
+
+        return toLongPrimitives(timeDifferences.toArray(new Long[timeDifferences.size()]));
+    }
+
+    private static long[] toLongPrimitives(Long... objects) {
+
+        long[] primitives = new long[objects.length];
+        for (int i = 0; i < objects.length; i++)
+            primitives[i] = objects[i];
+
+        return primitives;
     }
 
 }

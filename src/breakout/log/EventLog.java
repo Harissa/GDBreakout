@@ -34,4 +34,19 @@ public class EventLog {
             return String.valueOf(this.relativeTime) + ": " + this.event.toString();
     }
 
+    public Event getEvent()
+    {
+        return event;
+    }
+
+    public long getRelativeTime()
+    {
+        return relativeTime;
+    }
+
+    public long getAbsoluteTime()
+    {
+        return absoluteTime;
+    }
+
 }

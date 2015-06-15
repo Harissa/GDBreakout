@@ -66,7 +66,7 @@ public class Board extends JPanel implements Commons {
         gameInit();
         ingame=true;
         timer = new Timer();
-        timer.scheduleAtFixedRate(new ScheduleTask(), 1000, 1);
+        timer.scheduleAtFixedRate(new ScheduleTask(), 1000, TICK_LENGTH);
 
     }
 
@@ -150,7 +150,7 @@ public class Board extends JPanel implements Commons {
         ingame = false;
         timer.cancel();
         Log.log.log(Event.GAMEOVER);
-        //Log.log.logScore(score);
+        Log.log.logScore(score);
         try {
             Thread.sleep(1000);                 //1000 milliseconds is one second.
         } catch (InterruptedException ex) {

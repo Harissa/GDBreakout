@@ -36,6 +36,8 @@ public class Brick extends Sprite {
 
     public void setDestroyed(boolean destroyed)
     {
+        if ((!this.destroyed) && (destroyed))
+            Log.log.log(Event.BRICKBREAK);
         this.destroyed = destroyed;
     }
 

@@ -193,7 +193,6 @@ public class Board extends JPanel implements Commons {
 
         for (int i = 0; i < numberOfBricks; i++) {
             if ((ball.getRect()).intersects(bricks[i].getRect())) {
-                Log.log.log(Event.BRICKBREAK);
                 int ballLeft = (int)ball.getRect().getMinX();
                 int ballHeight = (int)ball.getRect().getHeight();
                 int ballWidth = (int)ball.getRect().getWidth();

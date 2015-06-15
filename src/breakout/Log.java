@@ -36,7 +36,7 @@ public class Log {
 
     public void log(Event event)
     {
-        events.add(new EventLog(event, System.nanoTime());
+        events.add(new EventLog(event, System.nanoTime()));
     }
 
     public void output(String filename)

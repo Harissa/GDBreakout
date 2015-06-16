@@ -28,22 +28,27 @@ public class Ball extends Sprite implements Commons {
     }
 
 
-    public void move()
+    public boolean move()
     {
+        boolean hasBounced=false;
         x += xdir;
         y += ydir;
 
         if (x <= 0) {
             setXDir(BALL_SPEED);
+            hasBounced=true;
         }
 
         if (x >= BALL_RIGHT) {
             setXDir(-BALL_SPEED);
+            hasBounced=true;
         }
 
         if (y <= 0) {
             setYDir(BALL_SPEED);
+            hasBounced=true;
         }
+        return hasBounced;
     }
 
     public void resetState()

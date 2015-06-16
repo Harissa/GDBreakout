@@ -26,6 +26,7 @@ public class Breakout extends JFrame {
 
     public static void main(String[] args) {
         //new Breakout(new KeyController());
-        new Breakout(new RandomController());
+        //new Breakout(new RandomController());
+        new Breakout(new FollowController());
     }
 }

@@ -35,8 +35,8 @@ public class PlayerModelController extends Controller{
         double noise = rand.nextGaussian()*indexOfDifficulty(Math.abs(paddleX-ballX),board.paddle.getWidth())*10;
         Log.log.console(noise);
         double targetX = paddleX + noise;
-        if (ballX>targetX) return Commons.PADDLE_SPEED;
-        if (ballX<targetX) return -Commons.PADDLE_SPEED;
+        if (ballX>targetX) return board.getCurrentConfig().PADDLE_SPEED;
+        if (ballX<targetX) return -board.getCurrentConfig().PADDLE_SPEED;
         return 0;
 
     }

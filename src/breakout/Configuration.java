@@ -7,15 +7,8 @@ package breakout;
  */
 public class Configuration {
 
-    public int WIDTH = 600;
-    public int HEIGTH = 400;
-    public int BOTTOM = 390;
-    public int PADDLE_RIGHT = 540;
-    public int BALL_RIGHT = 590;
-
     public int PADDLE_SPEED=2;
     public int BALL_SPEED=2;
-
     public int BRICKS_ACROSS=12;//6
     public int BRICKS_DOWN=5;
 

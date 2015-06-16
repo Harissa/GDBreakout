@@ -12,6 +12,6 @@ public class RandomController extends Controller{
         rand = new Random();
     }
     public int getAction(Board board) {
-        return (rand.nextInt(3)-1)*Commons.PADDLE_SPEED;
+        return (rand.nextInt(3)-1)*board.getCurrentConfig().PADDLE_SPEED;
     }
 }

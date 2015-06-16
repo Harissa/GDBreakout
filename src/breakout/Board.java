@@ -86,13 +86,13 @@ public class Board extends JPanel implements Commons {
 
     public void gameInit() {
 
-        ball = new Ball();
+        ball = new Ball(getCurrentConfig().BALL_SPEED);
         paddle = new Paddle();
         score =0;
 
         int k = 0;
-        for (int i = 0; i < BRICKS_DOWN; i++) {
-            for (int j = 0; j < BRICKS_ACROSS; j++) {
+        for (int i = 0; i < getCurrentConfig().BRICKS_DOWN; i++) {
+            for (int j = 0; j < getCurrentConfig().BRICKS_ACROSS; j++) {
                 bricks[k] = new Brick(j * 40 + 30, i * 10 + 50);
                 k++;
             }
@@ -130,6 +130,11 @@ public class Board extends JPanel implements Commons {
 
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
+    }
+
+    public Configuration getCurrentConfig()
+    {
+        return configs[currentConfig];
     }
 
     private class TAdapter extends KeyAdapter {
@@ -180,12 +185,12 @@ public class Board extends JPanel implements Commons {
             Stats.setScores(Log.log.getScores());
             Log.log.console(Stats.getAverage());
             Log.log.console(Stats.getStdDev());
-            Log.log.output();
+            Log.log.output(getCurrentConfig().BRICKS_ACROSS*getCurrentConfig().BRICKS_DOWN);
             currentConfig++;
 
             if (currentConfig<this.configs.length) {
                 Log.log.clear(tick);
-                this.setConfig(configs[currentConfig]);
+                this.setConfig(getCurrentConfig());
                 Log.log.setTrial("",controller);
                 currentTest = 0;
                 restartGame=true;
@@ -198,7 +203,7 @@ public class Board extends JPanel implements Commons {
 
     public void checkCollision() {
 
-        if (ball.getRect().getMaxY() > BOTTOM) {
+        if (ball.getRect().getMaxY() > Commons.BOTTOM) {
             stopGame();
         }
 
@@ -224,28 +229,28 @@ public class Board extends JPanel implements Commons {
             int fourth = paddleLPos + 32;
 
             if (ballLPos < first) {
-                ball.setXDir(-BALL_SPEED);
-                ball.setYDir(-BALL_SPEED);
+                ball.setXDir(-getCurrentConfig().BALL_SPEED);
+                ball.setYDir(-getCurrentConfig().BALL_SPEED);
             }
 
             if (ballLPos >= first && ballLPos < second) {
-                ball.setXDir(-BALL_SPEED);
-                ball.setYDir(-BALL_SPEED * ball.getYDir());
+                ball.setXDir(-getCurrentConfig().BALL_SPEED);
+                ball.setYDir(-getCurrentConfig().BALL_SPEED * ball.getYDir());
             }
 
             if (ballLPos >= second && ballLPos < third) {
                 ball.setXDir(0);
-                ball.setYDir(-BALL_SPEED);
+                ball.setYDir(-getCurrentConfig().BALL_SPEED);
             }
 
             if (ballLPos >= third && ballLPos < fourth) {
-                ball.setXDir(BALL_SPEED);
-                ball.setYDir(-BALL_SPEED * ball.getYDir());
+                ball.setXDir(getCurrentConfig().BALL_SPEED);
+                ball.setYDir(-getCurrentConfig().BALL_SPEED * ball.getYDir());
             }
 
             if (ballLPos > fourth) {
-                ball.setXDir(BALL_SPEED);
-                ball.setYDir(-BALL_SPEED);
+                ball.setXDir(getCurrentConfig().BALL_SPEED);
+                ball.setYDir(-getCurrentConfig().BALL_SPEED);
             }
         }
 
@@ -267,19 +272,19 @@ public class Board extends JPanel implements Commons {
 
                 if (!bricks[i].isDestroyed()) {
                     if (bricks[i].getRect().contains(pointRight)) {
-                        ball.setXDir(-BALL_SPEED);
+                        ball.setXDir(-getCurrentConfig().BALL_SPEED);
                     }
 
                     else if (bricks[i].getRect().contains(pointLeft)) {
-                        ball.setXDir(BALL_SPEED);
+                        ball.setXDir(getCurrentConfig().BALL_SPEED);
                     }
 
                     if (bricks[i].getRect().contains(pointTop)) {
-                        ball.setYDir(BALL_SPEED);
+                        ball.setYDir(getCurrentConfig().BALL_SPEED);
                     }
 
                     else if (bricks[i].getRect().contains(pointBottom)) {
-                        ball.setYDir(-BALL_SPEED);
+                        ball.setYDir(-getCurrentConfig().BALL_SPEED);
                     }
                     score++;
                     if ((!bricks[i].destroyed))

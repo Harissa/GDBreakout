@@ -9,20 +9,21 @@ import java.awt.event.KeyEvent;
 public class KeyController extends Controller implements Commons {
     private int dx=0;
 
+
     public int getAction(Board board) {
-        return dx;
+        return dx*board.getCurrentConfig().PADDLE_SPEED;
     }
     public void keyPressed(KeyEvent e) {
 
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_LEFT) {
-            dx = -PADDLE_SPEED;
+            dx = -1;
 
         }
 
         if (key == KeyEvent.VK_RIGHT) {
-            dx = PADDLE_SPEED;
+            dx = 1;
         }
     }
 

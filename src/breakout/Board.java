@@ -256,7 +256,7 @@ public class Board extends JPanel implements Commons {
                 ball.setXDir(getCurrentConfig().BALL_SPEED);
                 ball.setYDir(-getCurrentConfig().BALL_SPEED);
             }
-            
+
         }
 
 

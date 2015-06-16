@@ -1,13 +1,11 @@
 package breakout;
 
-import breakout.log.Log;
-
 import java.util.Random;
 
 /**
  * Created by JoeCutting on 15/06/15.
  */
-public class PlayerModelController extends Controller{
+public class PredictionPlayerController extends Controller{
     private Random rand;
     private double lastBallX;
     private double bounceTime=-100;
@@ -18,7 +16,7 @@ public class PlayerModelController extends Controller{
     private final int REACTION_TIME=12;
     private final double FITTS_NOISE=0;
 
-    public PlayerModelController() {
+    public PredictionPlayerController() {
 
         rand = new Random();
     }

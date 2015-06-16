@@ -1,6 +1,7 @@
 package breakout.log;
 
 import breakout.Commons;
+import breakout.Controller;
 
 import java.io.*;
 import java.text.DateFormat;
@@ -26,11 +27,9 @@ public class Log implements Commons {
     private static final String filepath = "logoutput/";
     public long startTime;
 
-    private String trialName = "";
-
     Log()
     {
-        this("output");
+        this("");
     }
 
     Log(String filename)
@@ -41,16 +40,12 @@ public class Log implements Commons {
         scores = new int[NUMBER_OF_TESTS];
     }
 
-    public void setTrialName(String trialName)
-    {
-        this.trialName = trialName;
-    }
-
     public void log(Event event)
     {
         EventLog newEvent = new EventLog(event, System.nanoTime());
         events.add(newEvent);
-        Log.console(newEvent.toString());
+        if (newEvent.getEvent() == Event.GAMESTART)
+            Log.console(newEvent.toString());
     }
 
     public void logScore(int score)
@@ -60,21 +55,21 @@ public class Log implements Commons {
 
         EventLog newEvent = new EventLog(Event.SCORE, System.nanoTime(), score);
         events.add(newEvent);
-        Log.console(newEvent.toString());
+        //Log.console(newEvent.toString());
     }
 
     public int[] getScores() { return scores;}
 
-    public void output()
+    public void output(Controller controller, String trialName)
     {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
 
-        if (LogOutput.printTimeDifferences(filepath,filename+"_blockTimeDiff_" + dateFormat.format(date),brickTimeDifferences()))
+        if (LogOutput.printTimeDifferences(filepath,filename+trialName+"_"+controller.getClass().getName()+"_n="+NUMBER_OF_TESTS+"_blockTimeDiff_" + dateFormat.format(date),brickTimeDifferences()))
             Log.console("Saved time differences");
-        if (LogOutput.printEventLog(filepath, filename+"_eventsLog_"  + dateFormat.format(date), events))
+        if (LogOutput.printEventLog(filepath, filename+trialName+"_"+controller.getClass().getName()+"_n="+NUMBER_OF_TESTS+"_eventsLog_"  + dateFormat.format(date), events))
             Log.console("Saved event log");
-        if (LogOutput.printScores(filepath, filename+"_scores_"  + dateFormat.format(date), scores))
+        if (LogOutput.printScores(filepath, filename+trialName+"_"+controller.getClass().getName()+"_n="+NUMBER_OF_TESTS+"_scores_"  + dateFormat.format(date), scores))
             Log.console("Saved scores log");
     }
 

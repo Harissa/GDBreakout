@@ -4,6 +4,7 @@
 .mtj.tmp/
 .idea/
 logoutput/
+data/
 
 # IntelliJ file
 .iml

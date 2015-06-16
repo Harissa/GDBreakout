@@ -171,7 +171,7 @@ public class Board extends JPanel implements Commons {
             Stats.setScores(Log.log.getScores());
             Log.log.console(Stats.getAverage());
             Log.log.console(Stats.getStdDev());
-            Log.log.output();
+            Log.log.output(controller,"trial");
             currentConfig++;
             if (currentConfig<NUMBER_OF_CONFIGS) {
                 restartGame=true;

@@ -18,6 +18,6 @@ public interface Commons {
 
     public static final int NUMBER_OF_TESTS=20;
     public static final int TICK_LENGTH=10;
-    public static final int GAME_WAIT =0;
+    public static final int GAME_WAIT =1000;
     public static int NUMBER_OF_CONFIGS=1;
 }

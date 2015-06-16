@@ -40,8 +40,8 @@ public class PlayerModelController extends Controller{
         double noise = rand.nextGaussian()*indexOfDifficulty(Math.abs(paddleX-ballX),board.paddle.getWidth())*FITTS_NOISE;
         Log.log.console(noise);
         double targetX = paddleX + noise;
-        if (ballX>targetX) direction= Commons.PADDLE_SPEED;
-        if (ballX<targetX) direction= -Commons.PADDLE_SPEED;
+        if (ballX>targetX) direction= board.getCurrentConfig().PADDLE_SPEED;
+        if (ballX<targetX) direction= -board.getCurrentConfig().PADDLE_SPEED;
         // if we're changing direction
         if (direction!=lastDirecion) {
             // if not started change timer

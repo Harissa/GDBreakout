@@ -15,8 +15,8 @@ public class PlayerModelController extends Controller{
     private int lastDirection=0;
     private int paddleTarget=2;
     private final int BOUNCE_WAIT=10;//10
-    private final int REACTION_TIME=5;
-    private final double FITTS_NOISE=2;
+    private final int REACTION_TIME=10;
+    private final double FITTS_NOISE=5;
 
     public PlayerModelController() {
 
@@ -31,7 +31,7 @@ public class PlayerModelController extends Controller{
             bounceTime = tickCount;
         }
         if (board.hasHitPaddle) {
-            paddleTarget = rand.nextInt(5);
+            paddleTarget = 2;//rand.nextInt(5);
         }
         if ((tickCount - bounceTime) > BOUNCE_WAIT) {
             ballX = board.ball.getX();
@@ -41,11 +41,23 @@ public class PlayerModelController extends Controller{
         }
 
         double paddleX = board.paddle.getX()+(board.paddle.getWidth()/5)*paddleTarget;
+        double paddleLeft = board.paddle.getX();
+        double paddleRight = board.paddle.getX()+board.paddle.getWidth();
         double noise = rand.nextGaussian()*indexOfDifficulty(Math.abs(paddleX-ballX),board.paddle.getWidth())*FITTS_NOISE;
         //Log.log.console(noise);
-        double targetX = paddleX + noise;
-        if (ballX>targetX) direction= board.getCurrentConfig().PADDLE_SPEED;
-        if (ballX<targetX) direction= -board.getCurrentConfig().PADDLE_SPEED;
+        double targetLeft = paddleLeft + noise;
+        double targetRight = paddleRight + noise;
+        if (ballX>targetRight) {
+            direction= board.getCurrentConfig().PADDLE_SPEED;
+        } else {
+            if (ballX < targetLeft) {
+                direction = -board.getCurrentConfig().PADDLE_SPEED;
+            } else {
+                // go the same direction as the ball
+                direction = (board.ball.xdir / board.getCurrentConfig().BALL_SPEED) * board.getCurrentConfig().PADDLE_SPEED;
+            }
+        }
+
         // if we're changing direction
         if (direction!=lastDirection) {
             // if not started change timer
@@ -53,7 +65,7 @@ public class PlayerModelController extends Controller{
                 changeTime = tickCount;
             }
             // if time elapsed
-            if ((tickCount-changeTime) > REACTION_TIME) {
+            if ((tickCount-changeTime) >= REACTION_TIME) {
                 // set last direction
                 lastDirection=direction;
                 changeTime=-100;

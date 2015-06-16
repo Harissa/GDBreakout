@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 
 public class Ball extends Sprite implements Commons {
 
-    private int xdir;
+    public int xdir;
     private int ydir;
     private int speed;
 

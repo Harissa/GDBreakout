@@ -68,7 +68,7 @@ public class LogOutput {
 
     private static OutputStreamWriter openFile(String filepath, String filename, String extension) throws IOException {
         if (createDirectory(filepath)) {
-            File file = new File(filename+extension);
+            File file = new File(filepath+filename+extension);
 
             if (!file.exists()) {
                 file.createNewFile();

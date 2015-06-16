@@ -28,16 +28,18 @@ public class LogOutput {
         return true;
     }
 
-    static boolean printTimeDifferences(String filepath, String filename, long[] differences)  {
+    static boolean printTimeDifferences(String filepath, String filename, long[][] differences)  {
         try {
             OutputStreamWriter writer = openFile(filepath, filename, ".csv");
             if (writer==null)
                 return false;
 
-            for (int i=0;i<differences.length;i++)
-            {
-                String str = differences[i]+",";
-                writer.write(str,0,str.length());
+            for (int i=0;i<differences.length;i++) {
+                for (int j = 0; j < differences[i].length; j++) {
+                    String str = differences[i][j] + ",";
+                    writer.write(str, 0, str.length());
+                }
+                writer.write("\n",0,"\n".length());
             }
             closeFile(writer);
         } catch (IOException e) {

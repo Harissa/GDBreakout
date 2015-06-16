@@ -23,6 +23,9 @@ public class Log implements Commons {
     private int[] scores;
     private int nextScore = 0;
 
+    private String trialName;
+    private String controllerName;
+
     private String filename;
     private static final String filepath = "logoutput/";
     public long startTime;
@@ -34,42 +37,53 @@ public class Log implements Commons {
 
     Log(String filename)
     {
-        this.events = new ArrayList<EventLog>();
         this.filename = filename;
-        this.startTime = System.nanoTime();
+        this.clear(0);
+    }
+
+    public void clear(int tick)
+    {
+        this.events = new ArrayList<EventLog>();
+        this.startTime = tick;
         scores = new int[NUMBER_OF_TESTS];
     }
 
-    public void log(Event event)
+    public void log(Event event, int tick)
     {
-        EventLog newEvent = new EventLog(event, System.nanoTime());
+        EventLog newEvent = new EventLog(event, tick);
         events.add(newEvent);
         if (newEvent.getEvent() == Event.GAMESTART)
             Log.console(newEvent.toString());
     }
 
-    public void logScore(int score)
+    public void logScore(int score, int tick)
     {
         scores[nextScore] = score;
         nextScore++;
 
-        EventLog newEvent = new EventLog(Event.SCORE, System.nanoTime(), score);
+        EventLog newEvent = new EventLog(Event.SCORE, tick, score);
         events.add(newEvent);
         //Log.console(newEvent.toString());
     }
 
     public int[] getScores() { return scores;}
 
-    public void output(Controller controller, String trialName)
+    public void setTrial(String trialName, Controller controller)
+    {
+        this.trialName = trialName;
+        this.controllerName = controller.getClass().getSimpleName();
+    }
+
+    public void output()
     {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
 
-        if (LogOutput.printTimeDifferences(filepath,filename+trialName+"_"+controller.getClass().getSimpleName()+"_n="+NUMBER_OF_TESTS+"_blockTimeDiff_" + dateFormat.format(date),brickTimeDifferences()))
+        if (LogOutput.printTimeDifferences(filepath,filename+trialName+"_"+controllerName+"_n="+NUMBER_OF_TESTS+"_blockTimeDiff_" + dateFormat.format(date),brickTimeDifferences()))
             Log.console("Saved time differences");
-        if (LogOutput.printEventLog(filepath, filename+trialName+"_"+controller.getClass().getSimpleName()+"_n="+NUMBER_OF_TESTS+"_eventsLog_"  + dateFormat.format(date), events))
+        if (LogOutput.printEventLog(filepath, filename+trialName+"_"+controllerName+"_n="+NUMBER_OF_TESTS+"_eventsLog_"  + dateFormat.format(date), events))
             Log.console("Saved event log");
-        if (LogOutput.printScores(filepath, filename+trialName+"_"+controller.getClass().getSimpleName()+"_n="+NUMBER_OF_TESTS+"_scores_"  + dateFormat.format(date), scores))
+        if (LogOutput.printScores(filepath, filename+trialName+"_"+controllerName+"_n="+NUMBER_OF_TESTS+"_scores_"  + dateFormat.format(date), scores))
             Log.console("Saved scores log");
     }
 

@@ -37,24 +37,35 @@ public class Board extends JPanel implements Commons {
     int currentTest;
     int currentConfig;
 
+    private int tick = 0;
+
     boolean ingame = true;
     boolean restartGame = false;
     boolean hasBounced=false;
     int timerId;
 
+    Configuration[] configs;
 
-    public Board(Controller newController) {
 
-        controller = newController;
+    public Board(Configuration[] configs) {
+        this.configs = configs;
+        currentConfig=0;
+        this.setConfig(configs[currentConfig]);
+
         addKeyListener(new TAdapter());
         setFocusable(true);
-        numberOfBricks = BRICKS_ACROSS * BRICKS_DOWN;
 
         setDoubleBuffered(true);
         currentTest=0;
-        currentConfig=0;
         thisBoard = this;
 
+        Log.log.setTrial("",controller);
+    }
+
+    private void setConfig(Configuration config)
+    {
+        this.controller = config.getController();
+        this.numberOfBricks = config.BRICKS_ACROSS * config.BRICKS_DOWN;
     }
 
     public void addNotify() {
@@ -62,7 +73,7 @@ public class Board extends JPanel implements Commons {
         restartGame();
     }
     private void restartGame() {
-        Log.log.log(Event.GAMESTART);
+        Log.log.log(Event.GAMESTART,tick);
         restartGame=false;
         currentTest++;
         bricks = new Brick[numberOfBricks];
@@ -70,10 +81,6 @@ public class Board extends JPanel implements Commons {
         ingame=true;
         timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(), GAME_WAIT, TICK_LENGTH);
-
-    }
-    public void setConfigs() {
-       // BALL_SPEED = currentConfig+1;
 
     }
 
@@ -140,7 +147,6 @@ public class Board extends JPanel implements Commons {
     class ScheduleTask extends TimerTask {
 
         public void run() {
-
             hasBounced =ball.move();
             controller.increaseTicks();
             int dx = controller.getAction(thisBoard);
@@ -148,18 +154,19 @@ public class Board extends JPanel implements Commons {
 
             checkCollision();
             repaint();
+            tick++;
+
             if (restartGame) {
                 restartGame();
             }
-
         }
     }
 
     public void stopGame() {
         ingame = false;
         timer.cancel();
-        Log.log.log(Event.GAMEOVER);
-        Log.log.logScore(score);
+        Log.log.log(Event.GAMEOVER,tick);
+        Log.log.logScore(score,tick);
         try {
             Thread.sleep(GAME_WAIT);                 //1000 milliseconds is one second.
         } catch (InterruptedException ex) {
@@ -169,14 +176,17 @@ public class Board extends JPanel implements Commons {
             restartGame = true;
         } else {
             // finished X tests
-
-
             Stats.setScores(Log.log.getScores());
             Log.log.console(Stats.getAverage());
             Log.log.console(Stats.getStdDev());
-            Log.log.output(controller,"trial");
+            Log.log.output();
             currentConfig++;
+
             if (currentConfig<NUMBER_OF_CONFIGS) {
+                Log.log.clear(tick);
+                Log.log.setTrial("",controller);
+                currentTest = 0;
+                this.setConfig(configs[currentConfig]);
                 restartGame=true;
             }
 
@@ -203,7 +213,7 @@ public class Board extends JPanel implements Commons {
 
         if ((ball.getRect()).intersects(paddle.getRect())) {
             hasBounced=true;
-            Log.log.log(Event.PADDLEHIT);
+            Log.log.log(Event.PADDLEHIT,tick);
             int paddleLPos = (int)paddle.getRect().getMinX();
             int ballLPos = (int)ball.getRect().getMinX();
 
@@ -271,6 +281,8 @@ public class Board extends JPanel implements Commons {
                         ball.setYDir(-BALL_SPEED);
                     }
                     score++;
+                    if ((!bricks[i].destroyed))
+                        Log.log.log(Event.BRICKBREAK, tick);
                     bricks[i].setDestroyed(true);
                 }
             }

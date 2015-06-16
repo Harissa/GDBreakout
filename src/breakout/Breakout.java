@@ -7,14 +7,15 @@ package breakout;
 
 import breakout.log.Event;
 import breakout.log.Log;
+import jdk.nashorn.internal.runtime.regexp.joni.Config;
 
 import javax.swing.JFrame;
 
 public class Breakout extends JFrame {
 
-    public Breakout(Controller controller)
+    public Breakout(Configuration[] configs)
     {
-        add(new Board(controller));
+        add(new Board(configs));
         setTitle("Breakout");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(Commons.WIDTH, Commons.HEIGTH);
@@ -25,8 +26,15 @@ public class Breakout extends JFrame {
     }
 
     public static void main(String[] args) {
+
+        Configuration[] configs = new Configuration[2];
+        configs[0] = new Configuration(new RandomController());
+        configs[1] = new Configuration(new FollowController());
+
+        new Breakout(configs);
+
         //new Breakout(new KeyController());
-        new Breakout(new RandomController());
+        //new Breakout(new RandomController());
         //new Breakout(new FollowController());
     }
 }

@@ -20,6 +20,7 @@ public class PlayerModelController extends Controller{
 
     public int getAction(Board board) {
         double ballX;
+        // takes 100ms to response to change in direction.
         if (board.hasBounced) {
             bounceTime = tickCount;
         }
@@ -31,9 +32,19 @@ public class PlayerModelController extends Controller{
         }
 
         double paddleX = board.paddle.getX()+(board.paddle.getWidth()/5)*rand.nextInt(5);
-        if (ballX>paddleX) return Commons.PADDLE_SPEED;
-        if (ballX<paddleX) return -Commons.PADDLE_SPEED;
+        double noise = rand.nextGaussian()*indexOfDifficulty(Math.abs(paddleX-ballX),board.paddle.getWidth())*10;
+        Log.log.console(noise);
+        double targetX = paddleX + noise;
+        if (ballX>targetX) return Commons.PADDLE_SPEED;
+        if (ballX<targetX) return -Commons.PADDLE_SPEED;
         return 0;
 
+    }
+    private double indexOfDifficulty(double distanceToTarget,double targetWidth) {
+        return log2(distanceToTarget*2/targetWidth);
+    }
+    private static double log2(double x)
+    {
+        return (Math.log(x) / Math.log(2));
     }
 }

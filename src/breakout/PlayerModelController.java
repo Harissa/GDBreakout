@@ -12,10 +12,11 @@ public class PlayerModelController extends Controller{
     private double lastBallX;
     private double bounceTime=-100;
     private double changeTime=-100;
-    private int lastDirecion=0;
+    private int lastDirection=0;
+    private int paddleTarget=2;
     private final int BOUNCE_WAIT=10;//10
-    private final int REACTION_TIME=25;
-    private final double FITTS_NOISE=5;
+    private final int REACTION_TIME=5;
+    private final double FITTS_NOISE=2;
 
     public PlayerModelController() {
 
@@ -29,6 +30,9 @@ public class PlayerModelController extends Controller{
         if (board.hasBounced) {
             bounceTime = tickCount;
         }
+        if (board.hasHitPaddle) {
+            paddleTarget = rand.nextInt(5);
+        }
         if ((tickCount - bounceTime) > BOUNCE_WAIT) {
             ballX = board.ball.getX();
             lastBallX = ballX;
@@ -36,26 +40,27 @@ public class PlayerModelController extends Controller{
             ballX = lastBallX;
         }
 
-        double paddleX = board.paddle.getX()+(board.paddle.getWidth()/5)*rand.nextInt(5);
+        double paddleX = board.paddle.getX()+(board.paddle.getWidth()/5)*paddleTarget;
         double noise = rand.nextGaussian()*indexOfDifficulty(Math.abs(paddleX-ballX),board.paddle.getWidth())*FITTS_NOISE;
-        Log.log.console(noise);
+        //Log.log.console(noise);
         double targetX = paddleX + noise;
         if (ballX>targetX) direction= board.getCurrentConfig().PADDLE_SPEED;
         if (ballX<targetX) direction= -board.getCurrentConfig().PADDLE_SPEED;
         // if we're changing direction
-        if (direction!=lastDirecion) {
+        if (direction!=lastDirection) {
             // if not started change timer
-            if (changeTime!=-1) {
+            if (changeTime==-100) {
                 changeTime = tickCount;
             }
             // if time elapsed
             if ((tickCount-changeTime) > REACTION_TIME) {
                 // set last direction
-                lastDirecion=direction;
-                changeTime=-1;
+                lastDirection=direction;
+                changeTime=-100;
             } else {
                 // don't change direction
-                direction=lastDirecion;
+                Log.log.console("waiting to change "+direction+" "+lastDirection);
+                direction=lastDirection;
             }
         }
         return direction;

@@ -17,8 +17,8 @@ public class PredictionPlayerController extends Controller{
     private double changeTime=-100;
     private int lastDirection=0;
     private int paddleTarget=2;
-    private final int BOUNCE_WAIT=6;//10
-    private final int REACTION_TIME=6;//12;
+    private final int BOUNCE_WAIT=8;//10
+    private final int REACTION_TIME=10;//12;
     private final double FITTS_NOISE=3;
 
     public PredictionPlayerController() {

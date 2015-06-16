@@ -14,8 +14,6 @@ public class Breakout extends JFrame {
 
     public Breakout(Controller controller)
     {
-
-
         add(new Board(controller));
         setTitle("Breakout");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -28,6 +26,7 @@ public class Breakout extends JFrame {
 
     public static void main(String[] args) {
         //new Breakout(new KeyController());
-        new Breakout(new RandomController());
+        //new Breakout(new RandomController());
+        new Breakout(new FollowController());
     }
 }

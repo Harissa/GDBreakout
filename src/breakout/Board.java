@@ -35,6 +35,7 @@ public class Board extends JPanel implements Commons {
     Board thisBoard;
     int score;
     int currentTest;
+    int currentConfig;
 
     boolean ingame = true;
     boolean restartGame = false;
@@ -50,6 +51,7 @@ public class Board extends JPanel implements Commons {
 
         setDoubleBuffered(true);
         currentTest=0;
+        currentConfig=0;
         thisBoard = this;
 
     }
@@ -67,6 +69,10 @@ public class Board extends JPanel implements Commons {
         ingame=true;
         timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(), GAME_WAIT, TICK_LENGTH);
+
+    }
+    public void setConfigs() {
+       // BALL_SPEED = currentConfig+1;
 
     }
 
@@ -166,6 +172,11 @@ public class Board extends JPanel implements Commons {
             Log.log.console(Stats.getAverage());
             Log.log.console(Stats.getStdDev());
             Log.log.output();
+            currentConfig++;
+            if (currentConfig<NUMBER_OF_CONFIGS) {
+                restartGame=true;
+            }
+
         }
 
     }

@@ -5,10 +5,6 @@
  */
 package breakout;
 
-import breakout.log.Event;
-import breakout.log.Log;
-import jdk.nashorn.internal.runtime.regexp.joni.Config;
-
 import javax.swing.JFrame;
 
 public class Breakout extends JFrame {
@@ -28,7 +24,7 @@ public class Breakout extends JFrame {
     public static void main(String[] args) {
 
         Configuration[] configs = new Configuration[1];
-        configs[0] = new Configuration(new PlayerModelController());
+        configs[0] = new Configuration(new PlayerModelController(), "");
        // configs[0] = new Configuration(new RandomController());
         //configs[1] = new Configuration(new FollowController());
 

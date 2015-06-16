@@ -13,10 +13,12 @@ public class Configuration {
     public int BRICKS_DOWN=5;
 
     private Controller controller;
+    private String name;
 
-    public Configuration(Controller controller)
+    public Configuration(Controller controller, String name)
     {
         this.controller = controller;
+        this.name = name;
     }
 
     public Controller getController()
@@ -38,6 +40,17 @@ public class Configuration {
     {
         this.BRICKS_ACROSS = across;
         this.BRICKS_DOWN = down;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "c"+controller.getClass().getSimpleName()+":s"+BALL_SPEED+":p"+PADDLE_SPEED+":ba"+BRICKS_ACROSS+":bd"+BRICKS_DOWN;
     }
 
 }

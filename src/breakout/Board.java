@@ -60,7 +60,7 @@ public class Board extends JPanel implements Commons {
         currentTest=0;
         thisBoard = this;
 
-        Log.log.setTrial("",controller);
+        Log.log.setTrial(getCurrentConfig());
     }
 
     private void setConfig(Configuration config)
@@ -193,7 +193,7 @@ public class Board extends JPanel implements Commons {
             if (currentConfig<this.configs.length) {
                 Log.log.clear(tick);
                 this.setConfig(getCurrentConfig());
-                Log.log.setTrial("",controller);
+                Log.log.setTrial(getCurrentConfig());
                 currentTest = 0;
                 restartGame=true;
             }

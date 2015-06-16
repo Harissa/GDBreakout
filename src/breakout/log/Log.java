@@ -24,8 +24,9 @@ public class Log implements Commons {
     private int[] scores;
     private int nextScore = 0;
 
+    private double[][] overallStats;
+
     private String trialName;
-    private String controllerName;
     private String configString;
 
     private String filename;
@@ -41,6 +42,7 @@ public class Log implements Commons {
     {
         this.filename = filename;
         this.clear(0);
+        this.overallStats = new double[NUMBER_OF_CONFIGS][2];
     }
 
     public void clear(int tick)
@@ -88,6 +90,15 @@ public class Log implements Commons {
             Log.console("Saved event log");
         if (LogOutput.printScores(filepath, filename+trialName+"_"+configString+"_n="+NUMBER_OF_TESTS+"_scores_"  + dateFormat.format(date), scores))
             Log.console("Saved scores log");
+
+    }
+
+    public void printOverallStats(Configuration[] configs)
+    {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        if (LogOutput.printOverallStats(filepath,filename+trialName+"_"+configString+"_n="+NUMBER_OF_TESTS+"_overall_"  + dateFormat.format(date), configs, overallStats))
+            Log.console("Saved overall stats");
     }
 
     public static void console(Object o)
@@ -132,4 +143,8 @@ public class Log implements Commons {
         return primitives;
     }
 
+    public void logOverallStats(int currentConfig, double average, double stdDev) {
+        overallStats[currentConfig][0] = average;
+        overallStats[currentConfig][1] = stdDev;
+    }
 }

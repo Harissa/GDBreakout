@@ -7,7 +7,7 @@ package breakout;
 
 import javax.swing.JFrame;
 
-public class Breakout extends JFrame {
+public class Breakout extends JFrame implements Commons {
 
     public Breakout(Configuration[] configs)
     {
@@ -22,7 +22,7 @@ public class Breakout extends JFrame {
     }
 
     public static void main(String[] args) {
-        Configuration[] configs = new Configuration[6];
+        Configuration[] configs = new Configuration[NUMBER_OF_CONFIGS];
         configs[0] = new Configuration(new PlayerModelController(), "");
 
         /* Compares various controllers with a fast or slow ball */

@@ -94,7 +94,7 @@ public class Board extends JPanel implements Commons {
         int k = 0;
         for (int i = 0; i < getCurrentConfig().BRICKS_DOWN; i++) {
             for (int j = 0; j < getCurrentConfig().BRICKS_ACROSS; j++) {
-                bricks[k] = new Brick(j * 40 + 30, i * 10 + 50);
+                bricks[k] = new Brick(j * 40 + 60, i * 10 + 50);
                 k++;
             }
         }
@@ -230,7 +230,7 @@ public class Board extends JPanel implements Commons {
             int second = paddleLPos + 16;
             int third = paddleLPos + 24;
             int fourth = paddleLPos + 32;
-
+            ball.reverse();
 
             if (ballLPos < first) {
                 ball.setXDir(-getCurrentConfig().BALL_SPEED);
@@ -256,8 +256,7 @@ public class Board extends JPanel implements Commons {
                 ball.setXDir(getCurrentConfig().BALL_SPEED);
                 ball.setYDir(-getCurrentConfig().BALL_SPEED);
             }
-            // set ball Y back to top
-            ball.setY(paddle.getY()-ball.getHeight());
+            
         }
 
 

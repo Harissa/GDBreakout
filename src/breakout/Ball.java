@@ -52,6 +52,10 @@ public class Ball extends Sprite implements Commons {
         }
         return hasBounced;
     }
+    public void reverse() {
+        x-=xdir;
+        y-=ydir;
+    }
 
     public void resetState()
     {

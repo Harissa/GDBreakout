@@ -183,7 +183,7 @@ public class Board extends JPanel implements Commons {
             Log.log.output();
             currentConfig++;
 
-            if (currentConfig<NUMBER_OF_CONFIGS) {
+            if (currentConfig<this.configs.length) {
                 Log.log.clear(tick);
                 Log.log.setTrial("",controller);
                 currentTest = 0;

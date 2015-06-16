@@ -68,7 +68,7 @@ public class Board extends JPanel implements Commons {
         gameInit();
         ingame=true;
         timer = new Timer();
-        timer.scheduleAtFixedRate(new ScheduleTask(), 1000, TICK_LENGTH);
+        timer.scheduleAtFixedRate(new ScheduleTask(), GAME_WAIT, TICK_LENGTH);
 
     }
     public void setConfigs() {
@@ -158,7 +158,7 @@ public class Board extends JPanel implements Commons {
         Log.log.log(Event.GAMEOVER);
         Log.log.logScore(score);
         try {
-            Thread.sleep(1000);                 //1000 milliseconds is one second.
+            Thread.sleep(GAME_WAIT);                 //1000 milliseconds is one second.
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }

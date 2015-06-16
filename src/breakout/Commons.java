@@ -16,10 +16,7 @@ public interface Commons {
     public static int BRICKS_ACROSS=12;//6
     public static int BRICKS_DOWN=5;
 
-    public static int NUMBER_OF_TESTS=50;
-    public static int TICK_LENGTH=2;
-
-    public static int NUMBER_OF_CONFIGS=2;
-
-
+    public static final int NUMBER_OF_TESTS=20;
+    public static final int TICK_LENGTH=1;
+    public static final int GAME_WAIT =0;
 }

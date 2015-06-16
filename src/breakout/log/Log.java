@@ -1,6 +1,7 @@
 package breakout.log;
 
 import breakout.Commons;
+import breakout.Configuration;
 import breakout.Controller;
 
 import java.io.*;
@@ -25,6 +26,7 @@ public class Log implements Commons {
 
     private String trialName;
     private String controllerName;
+    private String configString;
 
     private String filename;
     private static final String filepath = "logoutput/";
@@ -69,10 +71,10 @@ public class Log implements Commons {
 
     public int[] getScores() { return scores;}
 
-    public void setTrial(String trialName, Controller controller)
+    public void setTrial(Configuration config)
     {
-        this.trialName = trialName;
-        this.controllerName = controller.getClass().getSimpleName();
+        this.trialName = config.getName();
+        this.configString = config.toString();
     }
 
     public void output(int bricks)
@@ -80,11 +82,11 @@ public class Log implements Commons {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
 
-        if (LogOutput.printTimeDifferences(filepath,filename+trialName+"_"+controllerName+"_n="+NUMBER_OF_TESTS+"_blockTimeDiff_" + dateFormat.format(date),brickTimeDifferences(bricks)))
+        if (LogOutput.printTimeDifferences(filepath,filename+trialName+"_"+configString+"_n="+NUMBER_OF_TESTS+"_blockTimeDiff_" + dateFormat.format(date),brickTimeDifferences(bricks)))
             Log.console("Saved time differences");
-        if (LogOutput.printEventLog(filepath, filename+trialName+"_"+controllerName+"_n="+NUMBER_OF_TESTS+"_eventsLog_"  + dateFormat.format(date), events))
+        if (LogOutput.printEventLog(filepath, filename+trialName+"_"+configString+"_n="+NUMBER_OF_TESTS+"_eventsLog_"  + dateFormat.format(date), events))
             Log.console("Saved event log");
-        if (LogOutput.printScores(filepath, filename+trialName+"_"+controllerName+"_n="+NUMBER_OF_TESTS+"_scores_"  + dateFormat.format(date), scores))
+        if (LogOutput.printScores(filepath, filename+trialName+"_"+configString+"_n="+NUMBER_OF_TESTS+"_scores_"  + dateFormat.format(date), scores))
             Log.console("Saved scores log");
     }
 

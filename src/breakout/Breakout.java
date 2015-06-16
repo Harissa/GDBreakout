@@ -28,8 +28,10 @@ public class Breakout extends JFrame {
     public static void main(String[] args) {
 
         Configuration[] configs = new Configuration[2];
-        configs[0] = new Configuration(new RandomController());
-        configs[1] = new Configuration(new FollowController());
+        configs[0] = new Configuration(new PlayerModelController(),"slow");
+        configs[1] = new Configuration(new PlayerModelController(),"fast");
+        configs[0].setBallSpeed(2);
+        configs[1].setBallSpeed(4);
 
         new Breakout(configs);
 

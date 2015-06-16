@@ -46,6 +46,7 @@ public class Log implements Commons {
         this.events = new ArrayList<EventLog>();
         this.startTime = tick;
         scores = new int[NUMBER_OF_TESTS];
+        nextScore = 0;
     }
 
     public void log(Event event, int tick)
@@ -74,12 +75,12 @@ public class Log implements Commons {
         this.controllerName = controller.getClass().getSimpleName();
     }
 
-    public void output()
+    public void output(int bricks)
     {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
 
-        if (LogOutput.printTimeDifferences(filepath,filename+trialName+"_"+controllerName+"_n="+NUMBER_OF_TESTS+"_blockTimeDiff_" + dateFormat.format(date),brickTimeDifferences()))
+        if (LogOutput.printTimeDifferences(filepath,filename+trialName+"_"+controllerName+"_n="+NUMBER_OF_TESTS+"_blockTimeDiff_" + dateFormat.format(date),brickTimeDifferences(bricks)))
             Log.console("Saved time differences");
         if (LogOutput.printEventLog(filepath, filename+trialName+"_"+controllerName+"_n="+NUMBER_OF_TESTS+"_eventsLog_"  + dateFormat.format(date), events))
             Log.console("Saved event log");
@@ -92,9 +93,9 @@ public class Log implements Commons {
         System.out.println(o);
     }
 
-    private long[][] brickTimeDifferences()
+    private long[][] brickTimeDifferences(int bricks)
     {
-        long[][] timeDiffs = new long[NUMBER_OF_TESTS][BRICKS_ACROSS*BRICKS_DOWN];
+        long[][] timeDiffs = new long[NUMBER_OF_TESTS][bricks];
 
         long lastBreakEventTime = 0;
         int positionInEvents = -1;

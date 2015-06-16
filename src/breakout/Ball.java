@@ -77,4 +77,6 @@ public class Ball extends Sprite implements Commons {
     {
         return ydir;
     }
+
+    public int getXDir() { return xdir;}
 }

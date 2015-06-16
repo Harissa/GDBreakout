@@ -1,5 +1,7 @@
 package breakout;
 
+import breakout.log.Log;
+
 import java.util.Random;
 
 /**
@@ -8,13 +10,16 @@ import java.util.Random;
 public class PredictionPlayerController extends Controller{
     private Random rand;
     private double lastBallX;
+    private double lastBallY;
+    private double lastBalldX;
+    private double lastBalldY;
     private double bounceTime=-100;
     private double changeTime=-100;
     private int lastDirection=0;
     private int paddleTarget=2;
-    private final int BOUNCE_WAIT=8;//10
-    private final int REACTION_TIME=12;
-    private final double FITTS_NOISE=0;
+    private final int BOUNCE_WAIT=6;//10
+    private final int REACTION_TIME=6;//12;
+    private final double FITTS_NOISE=3;
 
     public PredictionPlayerController() {
 
@@ -22,7 +27,7 @@ public class PredictionPlayerController extends Controller{
     }
 
     public int getAction(Board board) {
-        double ballX;
+        double ballX, ballY, predictedX;
         int direction=0;
         // takes 100ms to response to change in direction.
         if (board.hasBounced) {
@@ -33,11 +38,25 @@ public class PredictionPlayerController extends Controller{
         }
         if ((tickCount - bounceTime) > BOUNCE_WAIT) {
             ballX = board.ball.getX();
+            ballY = board.ball.getY();
             lastBallX = ballX;
+            lastBallY = ballY;
+            lastBalldX = board.ball.getXDir();
+            lastBalldY = board.ball.getYDir();
         } else {
+            lastBallX+=lastBalldX;
+            lastBallY+=lastBalldY;
             ballX = lastBallX;
+            ballY = lastBallY;
+        }
+        if (lastBalldY>0) {
+            predictedX = ballX+ ((board.paddle.getY()-ballY)/lastBalldY)*lastBalldX;
+        } else {
+            predictedX = ballX;
         }
 
+
+       // Log.log.console("predicted x"+predictedX);
         double paddleX = board.paddle.getX()+(board.paddle.getWidth()/5)*paddleTarget;
         double paddleLeft = board.paddle.getX();
         double paddleRight = board.paddle.getX()+board.paddle.getWidth();
@@ -45,14 +64,15 @@ public class PredictionPlayerController extends Controller{
         //Log.log.console(noise);
         double targetLeft = paddleLeft + noise;
         double targetRight = paddleRight + noise;
-        if (ballX>targetRight) {
+        if (predictedX>targetRight) {
             direction= board.getCurrentConfig().PADDLE_SPEED;
         } else {
-            if (ballX < targetLeft) {
+            if (predictedX < targetLeft) {
                 direction = -board.getCurrentConfig().PADDLE_SPEED;
             } else {
                 // go the same direction as the ball
-                direction = (board.ball.xdir / board.getCurrentConfig().BALL_SPEED) * board.getCurrentConfig().PADDLE_SPEED;
+                direction = ((int)lastBalldX / board.getCurrentConfig().BALL_SPEED) * board.getCurrentConfig().PADDLE_SPEED;
+                //direction = (board.ball.xdir / board.getCurrentConfig().BALL_SPEED) * board.getCurrentConfig().PADDLE_SPEED;
             }
         }
 

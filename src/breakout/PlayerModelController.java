@@ -15,7 +15,7 @@ public class PlayerModelController extends Controller{
     private int lastDirection=0;
     private int paddleTarget=2;
     private final int BOUNCE_WAIT=8;//10
-    private final int REACTION_TIME=12;
+    private final int REACTION_TIME=8;
     private final double FITTS_NOISE=0;
 
     public PlayerModelController() {

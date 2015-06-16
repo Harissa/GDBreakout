@@ -187,6 +187,7 @@ public class Board extends JPanel implements Commons {
             Stats.setScores(Log.log.getScores());
             Log.log.console(Stats.getAverage());
             Log.log.console(Stats.getStdDev());
+            Log.log.logOverallStats(currentConfig,Stats.getAverage(),Stats.getStdDev());
             Log.log.output(getCurrentConfig().BRICKS_ACROSS*getCurrentConfig().BRICKS_DOWN);
             currentConfig++;
 
@@ -196,6 +197,10 @@ public class Board extends JPanel implements Commons {
                 Log.log.setTrial(getCurrentConfig());
                 currentTest = 0;
                 restartGame=true;
+            }
+            else
+            {
+                Log.log.printOverallStats(configs);
             }
 
         }

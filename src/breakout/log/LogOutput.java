@@ -1,5 +1,7 @@
 package breakout.log;
 
+import breakout.Configuration;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -105,4 +107,25 @@ public class LogOutput {
         return result;
     }
 
+    public static boolean printOverallStats(String filepath, String filename, Configuration[] configs, double[][] overallStats) {
+        try {
+            OutputStreamWriter writer = openFile(filepath, filename, ".csv");
+            if (writer==null)
+                return false;
+
+            String str = "condition,mean,sd,\n";
+            writer.write(str,0,str.length());
+
+            for (int i=0;i<overallStats.length;i++)
+            {
+                str = configs[i].toString()+","+overallStats[i][0]+","+overallStats[i][1]+"\n";
+                writer.write(str,0,str.length());
+            }
+            closeFile(writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

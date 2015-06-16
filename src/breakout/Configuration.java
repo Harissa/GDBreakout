@@ -24,4 +24,20 @@ public class Configuration {
         return this.controller;
     }
 
+    public void setPaddleSpeed(int speed)
+    {
+        this.PADDLE_SPEED = speed;
+    }
+
+    public void setBallSpeed(int speed)
+    {
+        this.BALL_SPEED = speed;
+    }
+
+    public void setBricksDimensions(int across, int down)
+    {
+        this.BRICKS_ACROSS = across;
+        this.BRICKS_DOWN = down;
+    }
+
 }

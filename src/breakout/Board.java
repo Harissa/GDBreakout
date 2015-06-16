@@ -39,6 +39,7 @@ public class Board extends JPanel implements Commons {
 
     boolean ingame = true;
     boolean restartGame = false;
+    boolean hasBounced=false;
     int timerId;
 
 
@@ -140,9 +141,11 @@ public class Board extends JPanel implements Commons {
 
         public void run() {
 
-            ball.move();
+            hasBounced =ball.move();
+            controller.increaseTicks();
             int dx = controller.getAction(thisBoard);
             paddle.move(dx);
+
             checkCollision();
             repaint();
             if (restartGame) {
@@ -199,6 +202,7 @@ public class Board extends JPanel implements Commons {
         }
 
         if ((ball.getRect()).intersects(paddle.getRect())) {
+            hasBounced=true;
             Log.log.log(Event.PADDLEHIT);
             int paddleLPos = (int)paddle.getRect().getMinX();
             int ballLPos = (int)ball.getRect().getMinX();
@@ -237,6 +241,7 @@ public class Board extends JPanel implements Commons {
 
         for (int i = 0; i < numberOfBricks; i++) {
             if ((ball.getRect()).intersects(bricks[i].getRect())) {
+                hasBounced=true;
                 int ballLeft = (int)ball.getRect().getMinX();
                 int ballHeight = (int)ball.getRect().getHeight();
                 int ballWidth = (int)ball.getRect().getWidth();

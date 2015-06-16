@@ -22,17 +22,21 @@ public class Breakout extends JFrame {
     }
 
     public static void main(String[] args) {
-
-        Configuration[] configs = new Configuration[1];
+        Configuration[] configs = new Configuration[6];
         configs[0] = new Configuration(new PlayerModelController(), "");
-       // configs[0] = new Configuration(new RandomController());
-        //configs[1] = new Configuration(new FollowController());
+
+        /* Compares various controllers with a fast or slow ball */
+        /*configs[1] = new Configuration(new RandomController(), "fast");
+        configs[1].setBallSpeed(4);
+        configs[2] = new Configuration(new FollowController(), "slow");
+        configs[2].setBallSpeed(2);
+        configs[3] = new Configuration(new FollowController(), "fast");
+        configs[3].setBallSpeed(4);
+        configs[4] = new Configuration(new PlayerModelController(), "slow");
+        configs[4].setBallSpeed(2);
+        configs[5] = new Configuration(new PlayerModelController(), "fast");
+        configs[5].setBallSpeed(4);(*/
 
         new Breakout(configs);
-
-        //new Breakout(new KeyController());
-        //new Breakout(new RandomController());
-        //new Breakout(new FollowController());
-        //new Breakout(new PlayerModelController());
     }
 }

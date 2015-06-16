@@ -23,7 +23,7 @@ public class Log implements Commons {
     private int nextScore = 0;
 
     private String filename;
-    private static final String filepath = "../logoutput/";
+    private static final String filepath = "logoutput/";
     public long startTime;
 
     private String trialName = "";
@@ -70,12 +70,11 @@ public class Log implements Commons {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
 
-
-        if (LogOutput.printTimeDifferences(filepath,filename+"_blockTimeDiff",brickTimeDifferences()))
+        if (LogOutput.printTimeDifferences(filepath,filename+"_blockTimeDiff_" + dateFormat.format(date),brickTimeDifferences()))
             Log.console("Saved time differences");
-        if (LogOutput.printEventLog(filepath, filename+"_eventsLog", events))
+        if (LogOutput.printEventLog(filepath, filename+"_eventsLog_"  + dateFormat.format(date), events))
             Log.console("Saved event log");
-        if (LogOutput.printScores(filepath, filename+"_scores", scores))
+        if (LogOutput.printScores(filepath, filename+"_scores_"  + dateFormat.format(date), scores))
             Log.console("Saved scores log");
     }
 
@@ -84,22 +83,32 @@ public class Log implements Commons {
         System.out.println(o);
     }
 
-    private long[] brickTimeDifferences()
+    private long[][] brickTimeDifferences()
     {
-        long lastBreakEventTime = 0;
-        ArrayList<Long> timeDifferences = new ArrayList<Long>();
+        long[][] timeDiffs = new long[NUMBER_OF_TESTS][BRICKS_ACROSS*BRICKS_DOWN];
 
-        for (int i = 0; i < events.size(); i++)
-        {
-            if (events.get(i).getEvent() == Event.BRICKBREAK)
-            {
-                if (lastBreakEventTime != 0)
-                    timeDifferences.add(events.get(i).getRelativeTime()-lastBreakEventTime);
-                lastBreakEventTime = events.get(i).getRelativeTime();
+        long lastBreakEventTime = 0;
+        int positionInEvents = -1;
+        int gameID = 0;
+
+        while ((gameID < NUMBER_OF_TESTS) && (positionInEvents < events.size())) {
+            int record = 0;
+            while (positionInEvents < events.size()) {
+                positionInEvents++;
+                Event e = events.get(positionInEvents).getEvent();
+                if (e == Event.GAMESTART)
+                    lastBreakEventTime = events.get(positionInEvents).getRelativeTime();
+                else if (e == Event.BRICKBREAK) {
+                    timeDiffs[gameID][record] = events.get(positionInEvents).getRelativeTime() - lastBreakEventTime;
+                    lastBreakEventTime = events.get(positionInEvents).getRelativeTime();
+                    record++;
+                } else if (e == Event.GAMEOVER)
+                    break;
             }
+            gameID++;
         }
 
-        return toLongPrimitives(timeDifferences.toArray(new Long[timeDifferences.size()]));
+        return timeDiffs;
     }
 
     private static long[] toLongPrimitives(Long... objects) {

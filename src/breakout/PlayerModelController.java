@@ -11,7 +11,11 @@ public class PlayerModelController extends Controller{
     private Random rand;
     private double lastBallX;
     private double bounceTime=-100;
+    private double changeTime=-100;
+    private int lastDirecion=0;
     private final int BOUNCE_WAIT=10;//10
+    private final int REACTION_TIME=25;
+    private final double FITTS_NOISE=5;
 
     public PlayerModelController() {
 
@@ -20,6 +24,7 @@ public class PlayerModelController extends Controller{
 
     public int getAction(Board board) {
         double ballX;
+        int direction=0;
         // takes 100ms to response to change in direction.
         if (board.hasBounced) {
             bounceTime = tickCount;
@@ -32,12 +37,28 @@ public class PlayerModelController extends Controller{
         }
 
         double paddleX = board.paddle.getX()+(board.paddle.getWidth()/5)*rand.nextInt(5);
-        double noise = rand.nextGaussian()*indexOfDifficulty(Math.abs(paddleX-ballX),board.paddle.getWidth())*10;
+        double noise = rand.nextGaussian()*indexOfDifficulty(Math.abs(paddleX-ballX),board.paddle.getWidth())*FITTS_NOISE;
         Log.log.console(noise);
         double targetX = paddleX + noise;
-        if (ballX>targetX) return Commons.PADDLE_SPEED;
-        if (ballX<targetX) return -Commons.PADDLE_SPEED;
-        return 0;
+        if (ballX>targetX) direction= Commons.PADDLE_SPEED;
+        if (ballX<targetX) direction= -Commons.PADDLE_SPEED;
+        // if we're changing direction
+        if (direction!=lastDirecion) {
+            // if not started change timer
+            if (changeTime!=-1) {
+                changeTime = tickCount;
+            }
+            // if time elapsed
+            if ((tickCount-changeTime) > REACTION_TIME) {
+                // set last direction
+                lastDirecion=direction;
+                changeTime=-1;
+            } else {
+                // don't change direction
+                direction=lastDirecion;
+            }
+        }
+        return direction;
 
     }
     private double indexOfDifficulty(double distanceToTarget,double targetWidth) {

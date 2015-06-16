@@ -27,9 +27,10 @@ public class Breakout extends JFrame {
 
     public static void main(String[] args) {
 
-        Configuration[] configs = new Configuration[2];
-        configs[0] = new Configuration(new RandomController());
-        configs[1] = new Configuration(new FollowController());
+        Configuration[] configs = new Configuration[1];
+        configs[0] = new Configuration(new PlayerModelController());
+       // configs[0] = new Configuration(new RandomController());
+        //configs[1] = new Configuration(new FollowController());
 
         new Breakout(configs);
 

@@ -42,6 +42,7 @@ public class Board extends JPanel implements Commons {
     boolean ingame = true;
     boolean restartGame = false;
     boolean hasBounced=false;
+    boolean hasHitPaddle=false;
     int timerId;
 
     Configuration[] configs;
@@ -156,6 +157,7 @@ public class Board extends JPanel implements Commons {
             controller.increaseTicks();
             int dx = controller.getAction(thisBoard);
             hasBounced=false;
+            hasHitPaddle=false;
             paddle.move(dx);
 
             checkCollision();
@@ -219,6 +221,7 @@ public class Board extends JPanel implements Commons {
 
         if ((ball.getRect()).intersects(paddle.getRect())) {
             hasBounced=true;
+            hasHitPaddle=true;
             Log.log.log(Event.PADDLEHIT,tick);
             int paddleLPos = (int)paddle.getRect().getMinX();
             int ballLPos = (int)ball.getRect().getMinX();

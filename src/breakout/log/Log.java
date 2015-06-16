@@ -46,6 +46,7 @@ public class Log implements Commons {
         this.events = new ArrayList<EventLog>();
         this.startTime = tick;
         scores = new int[NUMBER_OF_TESTS];
+        nextScore = 0;
     }
 
     public void log(Event event, int tick)

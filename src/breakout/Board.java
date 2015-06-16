@@ -185,9 +185,9 @@ public class Board extends JPanel implements Commons {
 
             if (currentConfig<this.configs.length) {
                 Log.log.clear(tick);
+                this.setConfig(configs[currentConfig]);
                 Log.log.setTrial("",controller);
                 currentTest = 0;
-                this.setConfig(configs[currentConfig]);
                 restartGame=true;
             }
 

@@ -141,8 +141,8 @@ public class Board extends JPanel implements Commons {
 
         public void run() {
 
-           
             hasBounced =ball.move();
+            controller.increaseTicks();
             int dx = controller.getAction(thisBoard);
             paddle.move(dx);
 

@@ -14,7 +14,7 @@ public class PlayerModelController extends Controller{
     private double changeTime=-100;
     private int lastDirection=0;
     private int paddleTarget=2;
-    private final int BOUNCE_WAIT=10;//10
+    private final int BOUNCE_WAIT=15;//10
     private final int REACTION_TIME=10;
     private final double FITTS_NOISE=5;
 
@@ -71,7 +71,7 @@ public class PlayerModelController extends Controller{
                 changeTime=-100;
             } else {
                 // don't change direction
-                Log.log.console("waiting to change "+direction+" "+lastDirection);
+                //Log.log.console("waiting to change "+direction+" "+lastDirection);
                 direction=lastDirection;
             }
         }

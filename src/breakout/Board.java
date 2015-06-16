@@ -231,6 +231,7 @@ public class Board extends JPanel implements Commons {
             int third = paddleLPos + 24;
             int fourth = paddleLPos + 32;
 
+
             if (ballLPos < first) {
                 ball.setXDir(-getCurrentConfig().BALL_SPEED);
                 ball.setYDir(-getCurrentConfig().BALL_SPEED);
@@ -255,6 +256,8 @@ public class Board extends JPanel implements Commons {
                 ball.setXDir(getCurrentConfig().BALL_SPEED);
                 ball.setYDir(-getCurrentConfig().BALL_SPEED);
             }
+            // set ball Y back to top
+            ball.setY(paddle.getY()-ball.getHeight());
         }
 
 

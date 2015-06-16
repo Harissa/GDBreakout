@@ -113,7 +113,7 @@ public class LogOutput {
             if (writer==null)
                 return false;
 
-            String str = "condition,mean,sd";
+            String str = "condition,mean,sd,\n";
             writer.write(str,0,str.length());
 
             for (int i=0;i<overallStats.length;i++)

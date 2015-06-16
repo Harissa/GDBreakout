@@ -150,6 +150,7 @@ public class Board extends JPanel implements Commons {
             hasBounced =ball.move();
             controller.increaseTicks();
             int dx = controller.getAction(thisBoard);
+            hasBounced=false;
             paddle.move(dx);
 
             checkCollision();

@@ -65,11 +65,11 @@ public class Log implements Commons {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
 
-        if (LogOutput.printTimeDifferences(filepath,filename+trialName+"_"+controller.getClass().getName()+"_n="+NUMBER_OF_TESTS+"_blockTimeDiff_" + dateFormat.format(date),brickTimeDifferences()))
+        if (LogOutput.printTimeDifferences(filepath,filename+trialName+"_"+controller.getClass().getSimpleName()+"_n="+NUMBER_OF_TESTS+"_blockTimeDiff_" + dateFormat.format(date),brickTimeDifferences()))
             Log.console("Saved time differences");
-        if (LogOutput.printEventLog(filepath, filename+trialName+"_"+controller.getClass().getName()+"_n="+NUMBER_OF_TESTS+"_eventsLog_"  + dateFormat.format(date), events))
+        if (LogOutput.printEventLog(filepath, filename+trialName+"_"+controller.getClass().getSimpleName()+"_n="+NUMBER_OF_TESTS+"_eventsLog_"  + dateFormat.format(date), events))
             Log.console("Saved event log");
-        if (LogOutput.printScores(filepath, filename+trialName+"_"+controller.getClass().getName()+"_n="+NUMBER_OF_TESTS+"_scores_"  + dateFormat.format(date), scores))
+        if (LogOutput.printScores(filepath, filename+trialName+"_"+controller.getClass().getSimpleName()+"_n="+NUMBER_OF_TESTS+"_scores_"  + dateFormat.format(date), scores))
             Log.console("Saved scores log");
     }
 

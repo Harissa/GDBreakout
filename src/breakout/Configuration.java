@@ -45,6 +45,11 @@ public class Configuration {
         this.BALL_SPEED = speed;
     }
 
+    public void setNumberOfTests(int tests)
+    {
+        this.NUMBER_OF_TESTS = tests;
+    }
+
     public void setBricksDimensions(int across, int down)
     {
         this.BRICKS_ACROSS = across;

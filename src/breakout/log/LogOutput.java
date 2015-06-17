@@ -113,14 +113,24 @@ public class LogOutput {
             if (writer==null)
                 return false;
 
-            String str = "condition,mean,sd,\n";
+           /* String str = "condition,mean,sd,\n";
             writer.write(str,0,str.length());
 
             for (int i=0;i<overallStats.length;i++)
             {
                 str = configs[i].toString()+","+overallStats[i][0]+","+overallStats[i][1]+"\n";
                 writer.write(str,0,str.length());
+            }*/
+
+            String str = "ball,paddle,mean,sd\n";
+            writer.write(str,0,str.length());
+
+            for (int i=0;i<overallStats.length;i++)
+            {
+                str = configs[i].BALL_SPEED+","+configs[i].PADDLE_SPEED+","+overallStats[i][0]+","+overallStats[i][1]+"\n";
+                writer.write(str,0,str.length());
             }
+
             closeFile(writer);
         } catch (IOException e) {
             e.printStackTrace();

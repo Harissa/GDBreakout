@@ -23,6 +23,11 @@ public class Configuration {
     {
         this.controller = controller;
         this.name = name;
+        if (controller instanceof KeyController) {
+            setHeadless(false);
+        } else {
+            setHeadless(true);
+        }
     }
 
     public Controller getController()
@@ -44,6 +49,17 @@ public class Configuration {
     {
         this.BRICKS_ACROSS = across;
         this.BRICKS_DOWN = down;
+    }
+    public void setHeadless(boolean isHeadless) {
+        if (isHeadless) {
+            Configuration.GAME_WAIT=0;
+            Configuration.TICK_LENGTH=1;
+            Configuration.NUMBER_OF_TESTS=10;
+        } else {
+            Configuration.GAME_WAIT=2000;
+            Configuration.TICK_LENGTH=10;
+            Configuration.NUMBER_OF_TESTS=3;
+        }
     }
 
     public String getName()

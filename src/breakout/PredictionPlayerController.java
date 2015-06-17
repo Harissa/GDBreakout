@@ -84,7 +84,7 @@ public class PredictionPlayerController extends Controller{
                         direction = ((int)lastBalldX / board.getCurrentConfig().BALL_SPEED) * board.getCurrentConfig().PADDLE_SPEED;
                     }
                 }
-                
+
             }
         }
 

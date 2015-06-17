@@ -39,7 +39,7 @@ public class Breakout extends JFrame {
     public static void main(String[] args) {
         Configuration[] configs = new Configuration[Commons.NUMBER_OF_CONFIGS];
         //configs[0] = new Configuration(new KeyController(), "");
-        configs[0] = new Configuration(new PredictionPlayerController(), "");
+        configs[0] = new Configuration(new PlayerModelController(), "");
 
         /* Compares various controllers with a fast or slow ball */
         /*configs[1] = new Configuration(new RandomController(), "fast");

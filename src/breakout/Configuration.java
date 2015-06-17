@@ -7,7 +7,7 @@ package breakout;
  */
 public class Configuration {
 
-    public int PADDLE_SPEED=1;//2;
+    public int PADDLE_SPEED=2;//2;
     public int BALL_SPEED=1;//2;
     public int BRICKS_ACROSS=12;//6
     public int BRICKS_DOWN=5;

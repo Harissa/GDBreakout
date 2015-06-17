@@ -21,17 +21,17 @@ public class Breakout extends JFrame {
         setVisible(true);
     }
 
-    private static Configuration[] generateConfigRange(double ballSpeedLow, double ballSpeedHigh, int ballSpeedSteps, double paddleSpeedLow, double paddleSpeedHigh,int paddleSpeedSteps)
+    private static Configuration[] generateConfigRange(Controller controller, double ballSpeedLow, double ballStep, int ballSteps, double paddleSpeedLow, double paddleStep, int paddleSteps)
     {
-        Configuration[] configs = new Configuration[ballSpeedSteps*paddleSpeedSteps];
-        double ballStep = (ballSpeedHigh-ballSpeedLow)/ballSpeedSteps;
-        double paddleStep = (paddleSpeedHigh-paddleSpeedLow)/paddleSpeedSteps;
-        for (int i=0;i<ballSpeedSteps;i++)
-            for (int j=0;j<paddleSpeedSteps;j++)
+        Configuration[] configs = new Configuration[ballSteps*paddleSteps];
+        //double ballStep = (ballSpeedHigh-ballSpeedLow)/ballSpeedSteps;
+        //double paddleStep = (paddleSpeedHigh-paddleSpeedLow)/paddleSpeedSteps;
+        for (int i=0;i<ballSteps;i++)
+            for (int j=0;j<paddleSteps;j++)
             {
-                configs[i*paddleSpeedSteps + j] = new Configuration(new PredictionPlayerController(),"");
-                configs[i*paddleSpeedSteps + j].setBallSpeed((int) (ballSpeedLow + ballStep * i));
-                configs[i*paddleSpeedSteps + j].setPaddleSpeed((int) (paddleSpeedLow+paddleStep*j));
+                configs[i*paddleSteps + j] = new Configuration(controller,"");
+                configs[i*paddleSteps + j].setBallSpeed((int) (ballSpeedLow + ballStep * i));
+                configs[i*paddleSteps + j].setPaddleSpeed((int) (paddleSpeedLow+paddleStep*j));
             }
         return configs;
     }
@@ -53,7 +53,7 @@ public class Breakout extends JFrame {
         configs[5] = new Configuration(new PlayerModelController(), "fast");
         configs[5].setBallSpeed(4);(*/
 
-        Configuration[] configRange = generateConfigRange(1,5,5,1,5,5);
+        Configuration[] configRange = generateConfigRange(new RandomController(),1,1,5,1,1,5);
 
         new Breakout(configs);
     }

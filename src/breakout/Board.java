@@ -85,12 +85,13 @@ public class Board extends JPanel implements Commons {
             ingame=false;
             message="Press a key to start";
             waitToStart=true;
-            repaint();
         } else {
             startGame();
         }
-        timer = new Timer();
-        timer.scheduleAtFixedRate(new ScheduleTask(), Configuration.GAME_WAIT, Configuration.TICK_LENGTH);
+        if (timer==null) {
+            timer = new Timer();
+            timer.scheduleAtFixedRate(new ScheduleTask(), Configuration.GAME_WAIT, Configuration.TICK_LENGTH);
+        }
 
 
 
@@ -182,7 +183,7 @@ public class Board extends JPanel implements Commons {
     class ScheduleTask extends TimerTask {
 
         public void run() {
-            if (!waitToStart) {
+            if (!waitToStart && ingame) {
                 hasBounced = ball.move();
                 controller.increaseTicks();
                 int dx = controller.getAction(thisBoard);
@@ -191,34 +192,54 @@ public class Board extends JPanel implements Commons {
                 paddle.move(dx);
 
                 checkCollision();
-                repaint();
-                tick++;
+
                 if (controller.isTimeout()) {
                     message = "Time's Up! You scored " + score;
                     Log.log.log(Event.TIMEOUT, tick);
                     stopGame();
                 }
 
-                if (restartGame) {
-                    restartGame();
-                }
+
+                repaint();
+                tick++;
             } else {
                repaint();
 
             }
+            if (restartGame) {
+
+                restartGame();
+            }
         }
     }
 
+    class WaitTask extends TimerTask {
+
+        public void run() {
+            stopGame2();
+            repaint();
+        }
+    }
+
+
     public void stopGame() {
-        ingame = false;
-        timer.cancel();
-        Log.log.log(Event.GAMEOVER,tick);
-        Log.log.logScore(score,tick);
-        try {
+
+        if (ingame) {
+            ingame = false;
+            Log.log.log(Event.GAMEOVER, tick);
+            Log.log.logScore(score, tick);
+            Timer otherTimer = new Timer();
+            otherTimer.schedule(new WaitTask(), Configuration.GAME_WAIT);
+        }
+    }
+    public void stopGame2() {
+      /*  try {
             Thread.sleep(Configuration.GAME_WAIT);                 //1000 milliseconds is one second.
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
-        }
+        }*/
+        Log.log.console("stop game2");
+
         if (currentTest <Configuration.NUMBER_OF_TESTS) {
             restartGame = true;
         } else {
@@ -226,7 +247,7 @@ public class Board extends JPanel implements Commons {
             Stats.setScores(Log.log.getScores());
             Log.log.console(Stats.getAverage());
             Log.log.console(Stats.getStdDev());
-            Log.log.logOverallStats(currentConfig,Stats.getAverage(),Stats.getStdDev());
+            Log.log.logOverallStats(currentConfig, Stats.getAverage(), Stats.getStdDev());
             Log.log.output(getCurrentConfig().BRICKS_ACROSS*getCurrentConfig().BRICKS_DOWN);
             currentConfig++;
 

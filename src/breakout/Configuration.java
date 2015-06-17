@@ -67,7 +67,7 @@ public class Configuration {
             Configuration.IS_PLAYER=true;
             Configuration.GAME_WAIT=2000;
             Configuration.TICK_LENGTH=10;
-            Configuration.NUMBER_OF_TESTS=3;
+            Configuration.NUMBER_OF_TESTS=10;
         }
     }
 

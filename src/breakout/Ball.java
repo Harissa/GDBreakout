@@ -3,6 +3,8 @@
  */
 package breakout;
 
+import breakout.log.Log;
+
 import javax.swing.ImageIcon;
 
 
@@ -16,7 +18,6 @@ public class Ball extends Sprite implements Commons {
 
     public Ball(int speed) {
         this.speed = speed;
-
         xdir = speed;
         ydir = -speed;
 

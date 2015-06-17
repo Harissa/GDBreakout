@@ -21,6 +21,21 @@ public class Breakout extends JFrame {
         setVisible(true);
     }
 
+    private static Configuration[] generateConfigRange(double ballSpeedLow, double ballSpeedHigh, int ballSpeedSteps, double paddleSpeedLow, double paddleSpeedHigh,int paddleSpeedSteps)
+    {
+        Configuration[] configs = new Configuration[ballSpeedSteps*paddleSpeedSteps];
+        double ballStep = (ballSpeedHigh-ballSpeedLow)/ballSpeedSteps;
+        double paddleStep = (paddleSpeedHigh-paddleSpeedLow)/paddleSpeedSteps;
+        for (int i=0;i<ballSpeedSteps;i++)
+            for (int j=0;j<paddleSpeedSteps;j++)
+            {
+                configs[i*paddleSpeedSteps + j] = new Configuration(new PredictionPlayerController(),"");
+                configs[i*paddleSpeedSteps + j].setBallSpeed((int) (ballSpeedLow + ballStep * i));
+                configs[i*paddleSpeedSteps + j].setPaddleSpeed((int) (paddleSpeedLow+paddleStep*j));
+            }
+        return configs;
+    }
+
     public static void main(String[] args) {
         Configuration[] configs = new Configuration[Commons.NUMBER_OF_CONFIGS];
         configs[0] = new Configuration(new KeyController(), "");
@@ -37,6 +52,8 @@ public class Breakout extends JFrame {
         configs[4].setBallSpeed(2);
         configs[5] = new Configuration(new PlayerModelController(), "fast");
         configs[5].setBallSpeed(4);(*/
+
+        Configuration[] configRange = generateConfigRange(1,5,5,1,5,5);
 
         new Breakout(configs);
     }

@@ -116,6 +116,7 @@ public class Board extends JPanel implements Commons {
                             bricks[i].getY(), bricks[i].getWidth(),
                             bricks[i].getHeight(), this);
             }
+            drawScore(g);
         } else {
 
             Font font = new Font("Verdana", Font.BOLD, 18);
@@ -131,6 +132,15 @@ public class Board extends JPanel implements Commons {
 
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
+    }
+    private void drawScore(Graphics g) {
+        Font font = new Font("Verdana", Font.PLAIN, 18);
+        FontMetrics metr = this.getFontMetrics(font);
+
+        g.setColor(Color.BLACK);
+        g.setFont(font);
+        g.drawString("Score:"+score, 10, 20);
+
     }
 
     public Configuration getCurrentConfig()

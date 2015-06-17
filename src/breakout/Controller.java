@@ -13,6 +13,7 @@ public class Controller {
     public void increaseTicks() {
         tickCount++;
     }
+    public boolean isTimeout() { return (tickCount>Configuration.TIME_LIMIT);}
     public void keyPressed(KeyEvent e) {
 
     }

@@ -7,14 +7,15 @@ package breakout;
  */
 public class Configuration {
 
-    public int PADDLE_SPEED=1;//2;
-    public int BALL_SPEED=1;//1;
+    public int PADDLE_SPEED=2;//2;
+    public int BALL_SPEED=2;//1;
     public int BRICKS_ACROSS=12;//6
     public int BRICKS_DOWN=5;
 
     public static int NUMBER_OF_TESTS=2;
     public static int TICK_LENGTH=10;
     public static int GAME_WAIT =0;
+    public static int TIME_LIMIT=30000;
 
     private Controller controller;
     private String name;

@@ -173,6 +173,10 @@ public class Board extends JPanel implements Commons {
             checkCollision();
             repaint();
             tick++;
+            if (controller.isTimeout()) {
+                message="Time's Up!";
+                stopGame();
+            }
 
             if (restartGame) {
                 restartGame();
@@ -221,6 +225,7 @@ public class Board extends JPanel implements Commons {
     public void checkCollision() {
 
         if (ball.getRect().getMaxY() > Commons.BOTTOM) {
+            message= "Game Over. You scored "+score;
             stopGame();
         }
 

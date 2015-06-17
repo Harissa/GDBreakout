@@ -245,7 +245,9 @@ public class Board extends JPanel implements Commons {
             int second = paddleLPos + 16;
             int third = paddleLPos + 24;
             int fourth = paddleLPos + 32;
-            ball.reverse();
+            while((ball.getRect()).intersects(paddle.getRect())){
+                ball.reverse();
+            }
 
             if (ballLPos < first) {
                 ball.setXDir(-getCurrentConfig().BALL_SPEED);

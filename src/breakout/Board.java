@@ -98,8 +98,6 @@ public class Board extends JPanel implements Commons {
     private void startGame() {
         waitToStart=false;
         ingame=true;
-
-
     }
 
     public void gameInit() {
@@ -184,7 +182,7 @@ public class Board extends JPanel implements Commons {
     class ScheduleTask extends TimerTask {
 
         public void run() {
-            //if (!waitToStart) {
+            if (!waitToStart) {
                 hasBounced = ball.move();
                 controller.increaseTicks();
                 int dx = controller.getAction(thisBoard);
@@ -204,10 +202,10 @@ public class Board extends JPanel implements Commons {
                 if (restartGame) {
                     restartGame();
                 }
-         //   } else {
-           //     repaint();
+            } else {
+               repaint();
 
-            //}
+            }
         }
     }
 

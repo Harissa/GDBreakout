@@ -283,6 +283,7 @@ public class Board extends JPanel implements Commons {
                 int ballWidth = (int)ball.getRect().getWidth();
                 int ballTop = (int)ball.getRect().getMinY();
 
+
                 Point pointRight =
                         new Point(ballLeft + ballWidth + 1, ballTop);
                 Point pointLeft = new Point(ballLeft - 1, ballTop);
@@ -291,6 +292,7 @@ public class Board extends JPanel implements Commons {
                         new Point(ballLeft, ballTop + ballHeight + 1);
 
                 if (!bricks[i].isDestroyed()) {
+                    ball.reverse();
                     if (bricks[i].getRect().contains(pointRight)) {
                         ball.setXDir(-getCurrentConfig().BALL_SPEED);
                     }

@@ -81,7 +81,7 @@ public class Board extends JPanel implements Commons {
         gameInit();
         ingame=true;
         timer = new Timer();
-        timer.scheduleAtFixedRate(new ScheduleTask(), GAME_WAIT, TICK_LENGTH);
+        timer.scheduleAtFixedRate(new ScheduleTask(), Configuration.GAME_WAIT, Configuration.TICK_LENGTH);
 
     }
 
@@ -186,11 +186,11 @@ public class Board extends JPanel implements Commons {
         Log.log.log(Event.GAMEOVER,tick);
         Log.log.logScore(score,tick);
         try {
-            Thread.sleep(GAME_WAIT);                 //1000 milliseconds is one second.
+            Thread.sleep(Configuration.GAME_WAIT);                 //1000 milliseconds is one second.
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        if (currentTest <NUMBER_OF_TESTS) {
+        if (currentTest <Configuration.NUMBER_OF_TESTS) {
             restartGame = true;
         } else {
             // finished X tests

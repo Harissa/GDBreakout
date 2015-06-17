@@ -81,7 +81,7 @@ public class Board extends JPanel implements Commons {
         gameInit();
         ingame=true;
         timer = new Timer();
-        timer.scheduleAtFixedRate(new ScheduleTask(), GAME_WAIT, TICK_LENGTH);
+        timer.scheduleAtFixedRate(new ScheduleTask(), Configuration.GAME_WAIT, Configuration.TICK_LENGTH);
 
     }
 
@@ -116,6 +116,7 @@ public class Board extends JPanel implements Commons {
                             bricks[i].getY(), bricks[i].getWidth(),
                             bricks[i].getHeight(), this);
             }
+            drawScore(g);
         } else {
 
             Font font = new Font("Verdana", Font.BOLD, 18);
@@ -131,6 +132,15 @@ public class Board extends JPanel implements Commons {
 
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
+    }
+    private void drawScore(Graphics g) {
+        Font font = new Font("Verdana", Font.PLAIN, 18);
+        FontMetrics metr = this.getFontMetrics(font);
+
+        g.setColor(Color.BLACK);
+        g.setFont(font);
+        g.drawString("Score:"+score, 10, 20);
+
     }
 
     public Configuration getCurrentConfig()
@@ -176,11 +186,11 @@ public class Board extends JPanel implements Commons {
         Log.log.log(Event.GAMEOVER,tick);
         Log.log.logScore(score,tick);
         try {
-            Thread.sleep(GAME_WAIT);                 //1000 milliseconds is one second.
+            Thread.sleep(Configuration.GAME_WAIT);                 //1000 milliseconds is one second.
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        if (currentTest <NUMBER_OF_TESTS) {
+        if (currentTest <Configuration.NUMBER_OF_TESTS) {
             restartGame = true;
         } else {
             // finished X tests

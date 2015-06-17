@@ -49,7 +49,7 @@ public class Log implements Commons {
     {
         this.events = new ArrayList<EventLog>();
         this.startTime = tick;
-        scores = new int[NUMBER_OF_TESTS];
+        scores = new int[Configuration.NUMBER_OF_TESTS];
         nextScore = 0;
     }
 
@@ -84,11 +84,11 @@ public class Log implements Commons {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
 
-        if (LogOutput.printTimeDifferences(filepath,filename+trialName+"_"+configString+"_n="+NUMBER_OF_TESTS+"_blockTimeDiff_" + dateFormat.format(date),brickTimeDifferences(bricks)))
+        if (LogOutput.printTimeDifferences(filepath,filename+trialName+"_"+configString+"_n="+Configuration.NUMBER_OF_TESTS+"_blockTimeDiff_" + dateFormat.format(date),brickTimeDifferences(bricks)))
             Log.console("Saved time differences");
-        if (LogOutput.printEventLog(filepath, filename+trialName+"_"+configString+"_n="+NUMBER_OF_TESTS+"_eventsLog_"  + dateFormat.format(date), events))
+        if (LogOutput.printEventLog(filepath, filename+trialName+"_"+configString+"_n="+Configuration.NUMBER_OF_TESTS+"_eventsLog_"  + dateFormat.format(date), events))
             Log.console("Saved event log");
-        if (LogOutput.printScores(filepath, filename+trialName+"_"+configString+"_n="+NUMBER_OF_TESTS+"_scores_"  + dateFormat.format(date), scores))
+        if (LogOutput.printScores(filepath, filename+trialName+"_"+configString+"_n="+Configuration.NUMBER_OF_TESTS+"_scores_"  + dateFormat.format(date), scores))
             Log.console("Saved scores log");
 
     }
@@ -97,7 +97,7 @@ public class Log implements Commons {
     {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
-        if (LogOutput.printOverallStats(filepath,filename+trialName+"_"+configString+"_n="+NUMBER_OF_TESTS+"_overall_"  + dateFormat.format(date), configs, overallStats))
+        if (LogOutput.printOverallStats(filepath,filename+trialName+"_"+configString+"_n="+Configuration.NUMBER_OF_TESTS+"_overall_"  + dateFormat.format(date), configs, overallStats))
             Log.console("Saved overall stats");
     }
 
@@ -108,13 +108,13 @@ public class Log implements Commons {
 
     private long[][] brickTimeDifferences(int bricks)
     {
-        long[][] timeDiffs = new long[NUMBER_OF_TESTS][bricks];
+        long[][] timeDiffs = new long[Configuration.NUMBER_OF_TESTS][bricks];
 
         long lastBreakEventTime = 0;
         int positionInEvents = -1;
         int gameID = 0;
 
-        while ((gameID < NUMBER_OF_TESTS) && (positionInEvents < events.size())) {
+        while ((gameID < Configuration.NUMBER_OF_TESTS) && (positionInEvents < events.size())) {
             int record = 0;
             while (positionInEvents < events.size()) {
                 positionInEvents++;

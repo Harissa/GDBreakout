@@ -11,7 +11,9 @@ public interface Commons {
     public static int BALL_RIGHT = 590;
 
     public static final int NUMBER_OF_CONFIGS = 25;
-    public static final int NUMBER_OF_TESTS=20;
-    public static final int TICK_LENGTH=1;
-    public static final int GAME_WAIT =0;
+
+  /*  public static final int NUMBER_OF_TESTS=2;
+    public static final int TICK_LENGTH=10;
+    public static final int GAME_WAIT =0;*/
+
 }

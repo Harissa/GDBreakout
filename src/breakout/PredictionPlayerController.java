@@ -34,7 +34,7 @@ public class PredictionPlayerController extends Controller{
             bounceTime = tickCount;
         }
         if (board.hasHitPaddle) {
-            paddleTarget = 2;//rand.nextInt(5);
+            paddleTarget = rand.nextInt(5);
         }
         if ((tickCount - bounceTime) > BOUNCE_WAIT) {
             ballX = board.ball.getX();

@@ -10,6 +10,7 @@ public class Controller {
     public int getAction(Board board) {
         return 0;
     }
+    public void resetTicks() { tickCount=0;}
     public void increaseTicks() {
         tickCount++;
     }

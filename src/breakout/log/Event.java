@@ -15,7 +15,7 @@ public enum Event {
     CEILINGHIT("ceilinghit"),
 
     //Meta-events
-    GAMESTART("gamestart"), GAMEEND("gameend"), GAMEOVER("gameover"),
+    GAMESTART("gamestart"), GAMEEND("gameend"), GAMEOVER("gameover"),TIMEOUT("timeout"),
 
     //Game state 'events'
     SCORE("score");

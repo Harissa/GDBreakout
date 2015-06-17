@@ -77,6 +77,7 @@ public class Board extends JPanel implements Commons {
         Log.log.log(Event.GAMESTART,tick);
         restartGame=false;
         currentTest++;
+        controller.resetTicks();
         bricks = new Brick[numberOfBricks];
         gameInit();
         ingame=true;
@@ -174,7 +175,8 @@ public class Board extends JPanel implements Commons {
             repaint();
             tick++;
             if (controller.isTimeout()) {
-                message="Time's Up!";
+                message="Time's Up! You scored "+score;
+                Log.log.log(Event.TIMEOUT,tick);
                 stopGame();
             }
 

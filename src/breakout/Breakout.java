@@ -54,8 +54,8 @@ public class Breakout extends JFrame {
         configs[5] = new Configuration(new PlayerModelController(), "fast");
         configs[5].setBallSpeed(4);(*/
 
-        Configuration[] configRange = generateConfigRange(new PredictionPlayerController(),1,1,5,1,1,5);
+        //Configuration[] configs = generateConfigRange(new PredictionPlayerController(),1,1,5,1,1,5);
 
-        new Breakout(configRange);
+        new Breakout(configs);
     }
 }

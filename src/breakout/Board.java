@@ -292,10 +292,16 @@ public class Board extends JPanel implements Commons {
             int paddleLPos = (int)paddle.getRect().getMinX();
             int ballLPos = (int)ball.getRect().getMinX();
 
-            int first = paddleLPos + 8;
+            /*int first = paddleLPos + 8;
             int second = paddleLPos + 16;
             int third = paddleLPos + 24;
             int fourth = paddleLPos + 32;
+            */
+            // Paddle width is 60
+            int first = paddleLPos + 12;
+            int second = paddleLPos + 24;
+            int third = paddleLPos + 36;
+            int fourth = paddleLPos + 48;
             while((ball.getRect()).intersects(paddle.getRect())){
                 ball.reverse();
             }

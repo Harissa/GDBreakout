@@ -3,6 +3,8 @@
  */
 package breakout;
 
+import breakout.log.Log;
+
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
@@ -21,6 +23,7 @@ public class Paddle extends Sprite implements Commons {
 
         width = image.getWidth(null);
         heigth = image.getHeight(null);
+        Log.log.console("paddle width= "+width);
 
         resetState();
     }

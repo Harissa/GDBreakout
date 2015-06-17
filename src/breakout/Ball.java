@@ -18,8 +18,13 @@ public class Ball extends Sprite implements Commons {
 
     public Ball(int speed) {
         this.speed = speed;
-        xdir = speed;
         ydir = -speed;
+        if (Math.random()<0.5) {
+            xdir = speed;
+        } else {
+            xdir = -speed;
+        }
+
 
         ImageIcon ii = new ImageIcon(this.getClass().getResource(ball));
         image = ii.getImage();
@@ -60,7 +65,7 @@ public class Ball extends Sprite implements Commons {
 
     public void resetState()
     {
-        x = 230;
+        x = 200+(int)Math.round(Math.random()*200f);//230
         y = 355;
     }
 

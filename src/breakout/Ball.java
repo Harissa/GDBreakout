@@ -14,7 +14,7 @@ public class Ball extends Sprite implements Commons {
     private int ydir;
     private int speed;
 
-    protected String ball = "../images/ball.png";
+    protected String ball = "/images/ball.png";
 
     public Ball(int speed) {
         this.speed = speed;

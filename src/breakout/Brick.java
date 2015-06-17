@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 
 public class Brick extends Sprite {
 
-    String brickie = "../images/brick.png";
+    String brickie = "/images/brick.png";
 
     boolean destroyed;
 

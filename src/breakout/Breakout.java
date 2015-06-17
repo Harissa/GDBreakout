@@ -38,8 +38,8 @@ public class Breakout extends JFrame {
     }
 
     public static void main(String[] args) {
-        Configuration[] configs = new Configuration[Commons.NUMBER_OF_CONFIGS];
-        configs[0] = new Configuration(new KeyController(), "");
+        //Configuration[] configs = new Configuration[Commons.NUMBER_OF_CONFIGS];
+        //configs[0] = new Configuration(new KeyController(), "");
        //configs[0] = new Configuration(new PredictionPlayerController(), "");
 
         /* Compares various controllers with a fast or slow ball */
@@ -54,7 +54,7 @@ public class Breakout extends JFrame {
         configs[5] = new Configuration(new PlayerModelController(), "fast");
         configs[5].setBallSpeed(4);(*/
 
-        //Configuration[] configs = generateConfigRange(new PredictionPlayerController(),1,1,5,1,1,5);
+        Configuration[] configs = generateConfigRange(new FollowController(),1,1,5,1,1,5);
 
         new Breakout(configs);
     }

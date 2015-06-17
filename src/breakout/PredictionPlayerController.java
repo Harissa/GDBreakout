@@ -19,7 +19,7 @@ public class PredictionPlayerController extends Controller{
     private int paddleTarget=2;
     private final int BOUNCE_WAIT=8;//10
     private final int REACTION_TIME=10;//12;
-    private final double FITTS_NOISE=3;
+    private final double FITTS_NOISE=5;
 
     public PredictionPlayerController() {
 
@@ -64,15 +64,27 @@ public class PredictionPlayerController extends Controller{
         //Log.log.console(noise);
         double targetLeft = paddleLeft + noise;
         double targetRight = paddleRight + noise;
+        // Aim to hit the paddle
         if (predictedX>targetRight) {
             direction= board.getCurrentConfig().PADDLE_SPEED;
         } else {
             if (predictedX < targetLeft) {
                 direction = -board.getCurrentConfig().PADDLE_SPEED;
             } else {
-                // go the same direction as the ball
-                direction = ((int)lastBalldX / board.getCurrentConfig().BALL_SPEED) * board.getCurrentConfig().PADDLE_SPEED;
-                //direction = (board.ball.xdir / board.getCurrentConfig().BALL_SPEED) * board.getCurrentConfig().PADDLE_SPEED;
+                // if in the paddle then aim to hit the target in the paddle
+                double paddleTargetLeft = board.paddle.getX()+(board.paddle.getWidth()/5)*paddleTarget;
+                double paddleTargetRight = board.paddle.getX()+(board.paddle.getWidth()/5)*paddleTarget+1;
+                if (predictedX>paddleTargetLeft) {
+                    direction= board.getCurrentConfig().PADDLE_SPEED;
+                } else {
+                    if (predictedX < paddleTargetRight) {
+                        direction = -board.getCurrentConfig().PADDLE_SPEED;
+                    } else {
+                        // If in target then go in the same direction as the ball
+                        direction = ((int)lastBalldX / board.getCurrentConfig().BALL_SPEED) * board.getCurrentConfig().PADDLE_SPEED;
+                    }
+                }
+                
             }
         }
 

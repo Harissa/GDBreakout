@@ -43,6 +43,7 @@ public class Board extends JPanel implements Commons {
     boolean restartGame = false;
     boolean hasBounced=false;
     boolean hasHitPaddle=false;
+    boolean waitToStart=false;
     int timerId;
 
     Configuration[] configs;
@@ -80,9 +81,23 @@ public class Board extends JPanel implements Commons {
         controller.resetTicks();
         bricks = new Brick[numberOfBricks];
         gameInit();
-        ingame=true;
+        if (Configuration.IS_PLAYER) {
+            ingame=false;
+            message="Press a key to start";
+            waitToStart=true;
+            repaint();
+        } else {
+            startGame();
+        }
         timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(), Configuration.GAME_WAIT, Configuration.TICK_LENGTH);
+
+
+
+    }
+    private void startGame() {
+        waitToStart=false;
+
 
     }
 
@@ -127,7 +142,7 @@ public class Board extends JPanel implements Commons {
             g.setFont(font);
             g.drawString(message,
                     (Commons.WIDTH - metr.stringWidth(message)) / 2,
-                    Commons.WIDTH / 2);
+                    Commons.HEIGHT / 2);
         }
 
 
@@ -136,7 +151,7 @@ public class Board extends JPanel implements Commons {
     }
     private void drawScore(Graphics g) {
         Font font = new Font("Verdana", Font.PLAIN, 18);
-        FontMetrics metr = this.getFontMetrics(font);
+        //FontMetrics metr = this.getFontMetrics(font);
 
         g.setColor(Color.BLACK);
         g.setFont(font);
@@ -156,7 +171,11 @@ public class Board extends JPanel implements Commons {
         }
 
         public void keyPressed(KeyEvent e) {
-            controller.keyPressed(e);
+            if (waitToStart) {
+                startGame();
+            } else {
+                controller.keyPressed(e);
+            }
         }
     }
 
@@ -164,24 +183,29 @@ public class Board extends JPanel implements Commons {
     class ScheduleTask extends TimerTask {
 
         public void run() {
-            hasBounced =ball.move();
-            controller.increaseTicks();
-            int dx = controller.getAction(thisBoard);
-            hasBounced=false;
-            hasHitPaddle=false;
-            paddle.move(dx);
+            if (!waitToStart) {
+                hasBounced = ball.move();
+                controller.increaseTicks();
+                int dx = controller.getAction(thisBoard);
+                hasBounced = false;
+                hasHitPaddle = false;
+                paddle.move(dx);
 
-            checkCollision();
-            repaint();
-            tick++;
-            if (controller.isTimeout()) {
-                message="Time's Up! You scored "+score;
-                Log.log.log(Event.TIMEOUT,tick);
-                stopGame();
-            }
+                checkCollision();
+                repaint();
+                tick++;
+                if (controller.isTimeout()) {
+                    message = "Time's Up! You scored " + score;
+                    Log.log.log(Event.TIMEOUT, tick);
+                    stopGame();
+                }
 
-            if (restartGame) {
-                restartGame();
+                if (restartGame) {
+                    restartGame();
+                }
+            } else {
+                repaint();
+
             }
         }
     }

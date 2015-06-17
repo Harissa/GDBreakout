@@ -25,6 +25,11 @@ public class PredictionPlayerController extends Controller{
 
         rand = new Random();
     }
+    public void resetTicks() {
+        bounceTime=-100;
+        changeTime=-100;
+        tickCount=0;
+    }
 
     public int getAction(Board board) {
         double ballX, ballY, predictedX;

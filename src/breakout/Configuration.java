@@ -16,6 +16,7 @@ public class Configuration {
     public static int TICK_LENGTH=10;
     public static int GAME_WAIT =0;
     public static int TIME_LIMIT=30000;
+    public static boolean IS_PLAYER=false;
 
     private Controller controller;
     private String name;
@@ -58,10 +59,12 @@ public class Configuration {
     }
     public void setHeadless(boolean isHeadless) {
         if (isHeadless) {
+            Configuration.IS_PLAYER=false;
             Configuration.GAME_WAIT=0;
             Configuration.TICK_LENGTH=1;
             Configuration.NUMBER_OF_TESTS=20;
         } else {
+            Configuration.IS_PLAYER=true;
             Configuration.GAME_WAIT=2000;
             Configuration.TICK_LENGTH=10;
             Configuration.NUMBER_OF_TESTS=3;
